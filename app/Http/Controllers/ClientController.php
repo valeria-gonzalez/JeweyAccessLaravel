@@ -39,27 +39,31 @@ class ClientController extends Controller
         // ]);
 
         $validated = $request->validate([
-            'name' => 'required|min:5|max:100',
-            'first_lastname' => 'required|min:5|max:100',
-            'second_lastname' => 'required|min:5|max:100',
-            'phone_number' => 'required|min:5|max:100',
+            'name' => 'required|min:2|max:100',
+            'first_lastname' => 'required|min:2|max:100',
+            'second_lastname' => 'required|min:2|max:100',
+            'phone_number' => 'required|min:10|max:100',
         ]);
-
-        $client = new Client();
-        $client->name = $request->name;
-        $client->first_lastname = $request->first_lastname;
-        $client->second_lastname = $request->second_lastname;
-        $client->phone_number = $request->phone_number;
-        $client->save();
-        return redirect()->back();
+        try{
+            $client = new Client();
+            $client->name = strtoupper($request->name);
+            $client->first_lastname = strtoupper($request->first_lastname);
+            $client->second_lastname = strtoupper($request->second_lastname);
+            $client->phone_number = $request->phone_number;
+            $client->save();
+            return redirect()->route('client.index');  
+        }
+        catch (\Exception $e) {
+            return redirect()->route('client.index'); 
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $client)
     {
-        //
+        return view('client/client_show', compact('client'));
     }
 
     /**

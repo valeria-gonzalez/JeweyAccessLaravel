@@ -6,7 +6,7 @@
     <title>Client</title>
 </head>
 <body>
-    <h1>Client Listing</h1>
+    <h1>Client information</h1>
     <table>
         <thead>
             <throw>
@@ -14,26 +14,18 @@
                 <td>First Lastname</td>
                 <td>Second Lastname</td>
                 <td>Phone Number</td>
-                <td>More</td>
             <throw>
         </thead>
         <tbody>
-            @foreach ($clients as $client)
                 <tr>
                     <td>{{ $client->name }}</td>
                     <td>{{ $client->first_lastname }}</td>
                     <td>{{ $client->second_lastname }}</td>
                     <td>{{ $client->phone_number }}</td>
-                    <td>
-                        <a href = "{{ route('client.show', $client->id) }}">
-                            See more 
-                        </a>
-                    </td>
                 </tr>
-            @endforeach
         </tbody>
     </table>
-    <a href = 'client/create'>Create client</a>
+    <a href = '/client'> Go back</a>
     
 </body>
 </html>

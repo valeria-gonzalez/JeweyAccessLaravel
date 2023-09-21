@@ -19,7 +19,7 @@
     @endif
 
     <!-- Create Post Form -->
-    <form action = "/client" method = "POST">
+    <form action = "{{ route('client.store') }}" method = "POST">
         @csrf <!--cross site resource forgery-->
         <label for = "name">Name</label>
         <input type = "text" name = "name"><br><br>
@@ -31,5 +31,6 @@
         <input type = "tel" name = "phone_number"><br><br>
         <input type = "submit" value = "submit">
     </form>
+    <a href = '/client'>Go back</a>
 </body>
 </html>

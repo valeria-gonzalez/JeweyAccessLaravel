@@ -12,7 +12,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client/client_index');
+        $clients = Client::all();
+        return view('client/client_index', compact('clients'));
     }
 
     /**
@@ -30,15 +31,26 @@ class ClientController extends Controller
     {
         // fix thisssssssssss
         // https://laravel.com/docs/10.x/validation#working-with-validated-input
-        $request->validate([
-            'name' => 'required|email',
-            'comment' => ['required', 'min:5', 'max:50'],
+        // $request->validate([
+        //     'name' => 'required|min:5|max:100',
+        //     'first_lastname' => 'required|min:5|max:100',
+        //     'second_lastname' => 'required|min:5|max:100',
+        //     'phone_number' => 'required|min:5|max:100',
+        // ]);
+
+        $validated = $request->validate([
+            'name' => 'required|min:5|max:100',
+            'first_lastname' => 'required|min:5|max:100',
+            'second_lastname' => 'required|min:5|max:100',
+            'phone_number' => 'required|min:5|max:100',
         ]);
 
-        $contact = new Contact();
-        $contact->email = $request->email;
-        $contact->comment = $request->comment;
-        $contact->save();
+        $client = new Client();
+        $client->name = $request->name;
+        $client->first_lastname = $request->first_lastname;
+        $client->second_lastname = $request->second_lastname;
+        $client->phone_number = $request->phone_number;
+        $client->save();
         return redirect()->back();
     }
 

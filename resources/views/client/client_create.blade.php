@@ -7,6 +7,18 @@
 </head>
 <body>
     <h1>Create client</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- Create Post Form -->
     <form action = "/client" method = "POST">
         @csrf <!--cross site resource forgery-->
         <label for = "name">Name</label>

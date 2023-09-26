@@ -25,7 +25,7 @@
                 </tr>
         </tbody>
     </table>
-    <a href = '/client'> Go back</a>
+    <a href = "{{ route('client.index') }}"> Go back</a>
     
 </body>
 </html>

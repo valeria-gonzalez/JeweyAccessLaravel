@@ -69,24 +69,47 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        //
+        return view('client/client_edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $client)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|min:2|max:100',
+            'first_lastname' => 'required|min:2|max:100',
+            'second_lastname' => 'required|min:2|max:100',
+            'phone_number' => 'required|min:10|max:100',
+        ]);
+        try{
+            $client->name = strtoupper($request->name);
+            $client->first_lastname = strtoupper($request->first_lastname);
+            $client->second_lastname = strtoupper($request->second_lastname);
+            $client->phone_number = $request->phone_number;
+            $client->save();
+            return redirect()->route('client.index');  
+        }
+        catch (\Exception $e) {
+            return redirect()->route('client.index'); 
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        //
+        try{
+            $client->delete();
+            return redirect()->route('client.index');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('client.index'); 
+        }
     }
 }

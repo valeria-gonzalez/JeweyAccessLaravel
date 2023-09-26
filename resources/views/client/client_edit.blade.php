@@ -6,7 +6,7 @@
     <title>Client</title>
 </head>
 <body>
-    <h1>Create client</h1>
+    <h1>Edit client</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -19,8 +19,9 @@
     @endif
 
     <!-- Create Post Form -->
-    <form action = "{{ route('client.store') }}" method = "POST">
+    <form action = "{{ route('client.update', $client) }}" method = "POST">
         @csrf <!--cross site resource forgery-->
+        @method('PATCH')
         <label for = "name">Name</label>
         <input type = "text" name = "name"><br><br>
         <label for = "first_lastname">First Lastname</label>

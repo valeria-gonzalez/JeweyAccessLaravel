@@ -28,12 +28,20 @@
                         <a href = "{{ route('client.show', $client->id) }}">
                             See more 
                         </a>
+                        <a href = "{{ route('client.edit', $client->id) }}">
+                            Edit 
+                        </a>
+                        <form action = "{{route('client.destroy', $client)}}" method = "POST">
+                            @csrf 
+                            @method('DELETE')
+                            <input type = "submit" value = "Delete">
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <a href = 'client/create'>Create client</a>
+    <a href = "{{ route('client.create') }}">Create client</a>
     
 </body>
 </html>

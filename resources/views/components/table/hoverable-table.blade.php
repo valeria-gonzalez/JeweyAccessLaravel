@@ -1,0 +1,47 @@
+<!-- Hoverable Table rows -->
+<div class="card">
+    <h5 class="card-header">{{ $title }}</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    @foreach ($headings as $heading)
+                    <th>{{ $heading }}</th>
+                    @endforeach
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach ($models as $model)
+                <tr>
+                    @foreach ($properties as $prop)
+                    <td>{{ $model->$prop }}</td>
+                    @endforeach
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                @for ($i = 0; $i < count($actions); $i++) @php $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; @endphp @if ($action=='Delete' ) <form class="dropdown-item" action="{{route('client.destroy', $model)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <i class="bx bx-edit-alt me-1"></i>
+                                    <input type="submit" value="Delete" style="background-color: transparent; border: none; color: #ff817b">
+                                    </form>
+                                    @elseif($action == 'Edit' || $action == 'Show')
+                                    <a class="dropdown-item" href="{{ route($actionRoute, $model->id) }}"><i class="bx bx-edit-alt me-1"></i> {{ $action }}</a>
+                                    @else
+                                    <a class="dropdown-item" href="{{ $actionRoute }}"><i class="bx bx-edit-alt me-1"></i> {{ $action }}</a>
+                                    @endif
+                                    @endfor
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--/ Hoverable Table rows -->

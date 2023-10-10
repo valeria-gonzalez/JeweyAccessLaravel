@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::resource('client', ClientController::class);
 
+Route::get('prueba', function () {
+    return view('prueba');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

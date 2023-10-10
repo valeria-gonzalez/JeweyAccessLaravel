@@ -1,37 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client</title>
-</head>
-<body>
-    <h1>Edit client</h1>
+<x-mi-layout>
+    <x-text.page-heading1 span="Clients / " after-span="Edit Client"/> 
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <x-forms.horizontal-form title="Edit Client" description="Edit client information">
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <!-- Create Post Form -->
-    <form action = "{{ route('client.update', $client) }}" method = "POST">
-        @csrf <!--cross site resource forgery-->
-        @method('PATCH')
-        <label for = "name">Name</label>
-        <input type = "text" name = "name"><br><br>
-        <label for = "first_lastname">First Lastname</label>
-        <input type = "text" name = "first_lastname"><br><br>
-        <label for = "second_lastname">Second Lastname</label>
-        <input type = "text" name = "second_lastname"><br><br>
-        <label for = "phone_number">Phone Number</label>
-        <input type = "tel" name = "phone_number"><br><br>
-        <input type = "submit" value = "submit">
-    </form>
-    <a href = "{{ route('client.index') }}">Go back</a>
-</body>
-</html>
+        <!-- Create Post Form -->
+        <form action = "{{ route('client.update', $client) }}" method = "POST">
+            @csrf <!--cross site resource forgery-->
+            @method('PATCH')
+            <x-forms.form-input type="text" label="Name" id="name" placeholder="John" />
+            <x-forms.form-input type="text" label="First Lastname" id="first_lastname" placeholder="Doe" />
+            <x-forms.form-input type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" />
+            <x-forms.form-input type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" />
+            
+            <x-forms.form-submit> Update </x-forms.form-submit>
+        </form>
+    </x-horizontal-form>
+</x-mi-layout>

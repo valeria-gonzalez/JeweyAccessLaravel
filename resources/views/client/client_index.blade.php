@@ -1,4 +1,5 @@
 <x-mi-layout>
+    <div class="container-fluid flex-grow-1 container-p-y">
     <x-text.page-heading1 span="Client / " after-span="List Clients"/> 
 
     <x-table.hoverable-table 
@@ -12,5 +13,5 @@
                           'client.destroy'
                         ]"
     />
-    
+    </div>
 </x-mi-layout>

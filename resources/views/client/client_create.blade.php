@@ -1,4 +1,5 @@
 <x-mi-layout>
+    <div class="container-fluid flex-grow-1 container-p-y">
     <x-text.page-heading1 span="Clients / " after-span="New Client"/> 
 
     <x-forms.horizontal-form title="Create Client" description="Add a new client">
@@ -23,4 +24,5 @@
             <x-forms.form-submit> Create </x-forms.form-submit>
         </form>
     </x-horizontal-form>
+    </div>
 </x-mi-layout>

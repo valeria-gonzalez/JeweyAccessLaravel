@@ -274,14 +274,14 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                    <div class="container-fluid flex-grow-1 container-p-y">
+                    
                         <!-- Layout Demo -->
                         {{ $slot }}
                         <!-- <div class="layout-demo-wrapper">
                 
-              </div> -->
+                        </div> -->
                         <!--/ Layout Demo -->
-                    </div>
+                    
                     <!-- / Content -->
 
 

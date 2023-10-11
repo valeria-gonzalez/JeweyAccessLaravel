@@ -16,7 +16,11 @@
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
                         <div class="card-body pb-0 px-0 px-md-4">
-                            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" />
+                            <img src="{{ asset('/sneat/assets/img/illustrations/man-with-laptop-light.png') }}" 
+                                height="140" alt="View Badge User" 
+                                data-app-dark-img="{{ asset('/sneat/assets/img/illustrations/man-with-laptop-dark.png') }}" 
+                                data-app-light-img="{{ asset('/sneat/assets/img/illustrations/man-with-laptop-light.png') }}" 
+                            />
                         </div>
                     </div>
                 </div>
@@ -29,7 +33,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                                    <img src="{{ asset('/sneat/assets/img/icons/unicons/chart-success.png') }}" alt="chart success" class="rounded" />
                                 </div>
                                 <div class="dropdown">
                                     <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +56,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="../assets/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded" />
+                                    <img src="{{ asset('/sneat/assets/img/icons/unicons/wallet-info.png') }}" alt="Credit Card" class="rounded" />
                                 </div>
                                 <div class="dropdown">
                                     <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -132,7 +136,7 @@
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
                                 </div>
-                                <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                                <img src="{{ asset('/sneat/assets/img/icons/unicons/paypal.png') }}" alt="Credit Card" class="rounded" />
                                 <button <div class="dropdown">
                                     type="button"
                                     class="btn p-0"
@@ -158,7 +162,7 @@
                 <div class="col-6 mb-4">
                     <div class="card-title d-flex align-items-start justify-content-between">
                         <div class="card-body">
-                            <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                            <img src="{{ asset('/sneat/assets/img/icons/unicons/cc-primary.png') }}" alt="Credit Card" class="rounded" />
                             <div class="avatar flex-shrink-0">
                                 <div class="dropdown">
                                 </div>
@@ -332,7 +336,7 @@
             <small class="text-muted d-block">Total Balance</small>
             <div class="d-flex p-4 pt-3">
                 <h6 class="mb-0 me-1">$459.10</h6>
-                <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
+                <img src="{{ asset('/sneat/assets/img/icons/unicons/wallet.png') }}" alt="User" />
                 <i class="bx bx-chevron-up"></i>
                 <div>
                     </small>
@@ -382,7 +386,7 @@
             <div class="avatar flex-shrink-0 me-3">
                 <li class="d-flex mb-4 pb-1">
             </div>
-            <img src="../assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/assets/img/icons/unicons/paypal.png') }}" alt="User" class="rounded" />
             <div class="me-2">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                     <h6 class="mb-0">Send money</h6>
@@ -395,7 +399,7 @@
             </div>
             <li class="d-flex mb-4 pb-1">
             </li>
-            <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/assets/img/icons/unicons/wallet.png') }}" alt="User" class="rounded" />
             <div class="avatar flex-shrink-0 me-3">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                 </div>
@@ -412,7 +416,7 @@
             <div class="avatar flex-shrink-0 me-3">
                 <li class="d-flex mb-4 pb-1">
             </div>
-            <img src="../assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/assets/img/icons/unicons/chart.png') }}" alt="User" class="rounded" />
             <div class="me-2">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                     <h6 class="mb-0">Refund</h6>
@@ -425,7 +429,7 @@
             </div>
             <li class="d-flex mb-4 pb-1">
             </li>
-            <img src="../assets/img/icons/unicons/cc-success.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/img/icons/unicons/cc-success.png') }}" alt="User" class="rounded" />
             <div class="avatar flex-shrink-0 me-3">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                 </div>
@@ -442,7 +446,7 @@
             <div class="avatar flex-shrink-0 me-3">
                 <li class="d-flex mb-4 pb-1">
             </div>
-            <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/assets/img/icons/unicons/wallet.png') }}" alt="User" class="rounded" />
             <div class="me-2">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                     <h6 class="mb-0">Starbucks</h6>
@@ -455,7 +459,7 @@
             </div>
             <li class="d-flex">
             </li>
-            <img src="../assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded" />
+            <img src="{{ asset('/sneat/assets/img/icons/unicons/cc-warning.png') }}" alt="User" class="rounded" />
             <div class="avatar flex-shrink-0 me-3">
                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                 </div>

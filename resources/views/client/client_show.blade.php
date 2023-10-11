@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,4 +28,17 @@
     <a href = "{{ route('client.index') }}"> Go back</a>
     
 </body>
-</html>
+</html> -->
+<x-mi-layout>
+    <div class="container-fluid flex-grow-1 container-p-y">
+        <x-text.page-heading1 span="Client / " after-span="Show Client"/>
+        <x-table.hoverable-table 
+        title="Client Information #ID: {{ $client->id }}"
+        :headings="['Name', 'Last Name', 'Last Name', 'Phone Number']"
+        :models="[$client]"
+        :properties="['name', 'first_lastname', 'second_lastname', 'phone_number']"
+        :actions="[]"
+        :action-routes="[]"
+        />
+    </div> 
+</x-mi-layout>

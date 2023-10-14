@@ -136,7 +136,7 @@
                             <div data-i18n="Kanban">Clients</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="{{ route('client.index') }}" target="" class="menu-link">
                                     <div data-i18n="Analytics">List</div>
                                 </a>

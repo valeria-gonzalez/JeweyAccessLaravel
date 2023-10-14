@@ -29,33 +29,20 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        // fix thisssssssssss
-        // https://laravel.com/docs/10.x/validation#working-with-validated-input
-        // $request->validate([
-        //     'name' => 'required|min:5|max:100',
-        //     'first_lastname' => 'required|min:5|max:100',
-        //     'second_lastname' => 'required|min:5|max:100',
-        //     'phone_number' => 'required|min:5|max:100',
-        // ]);
-
         $validated = $request->validate([
             'name' => 'required|min:2|max:100',
             'first_lastname' => 'required|min:2|max:100',
             'second_lastname' => 'required|min:2|max:100',
             'phone_number' => 'required|min:10|max:100',
         ]);
-        try{
-            $client = new Client();
-            $client->name = strtoupper($request->name);
-            $client->first_lastname = strtoupper($request->first_lastname);
-            $client->second_lastname = strtoupper($request->second_lastname);
-            $client->phone_number = $request->phone_number;
-            $client->save();
-            return redirect()->route('client.index');  
-        }
-        catch (\Exception $e) {
-            return redirect()->route('client.index'); 
-        }
+
+        $client = new Client();
+        $client->name = strtoupper($request->name);
+        $client->first_lastname = strtoupper($request->first_lastname);
+        $client->second_lastname = strtoupper($request->second_lastname);
+        $client->phone_number = $request->phone_number;
+        $client->save();
+        return redirect()->route('client.index');
     }
 
     /**
@@ -85,18 +72,13 @@ class ClientController extends Controller
             'second_lastname' => 'required|min:2|max:100',
             'phone_number' => 'required|min:10|max:100',
         ]);
-        try{
-            $client->name = strtoupper($request->name);
-            $client->first_lastname = strtoupper($request->first_lastname);
-            $client->second_lastname = strtoupper($request->second_lastname);
-            $client->phone_number = $request->phone_number;
-            $client->save();
-            return redirect()->route('client.index');  
-        }
-        catch (\Exception $e) {
-            return redirect()->route('client.index'); 
-        }
 
+        $client->name = strtoupper($request->name);
+        $client->first_lastname = strtoupper($request->first_lastname);
+        $client->second_lastname = strtoupper($request->second_lastname);
+        $client->phone_number = $request->phone_number;
+        $client->save();
+        return redirect()->route('client.index');
     }
 
     /**
@@ -104,12 +86,11 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        try{
+        try {
             $client->delete();
             return redirect()->route('client.index');
-        }
-        catch (\Exception $e) {
-            return redirect()->route('client.index'); 
+        } catch (\Exception $e) {
+            return redirect()->route('client.index');
         }
     }
 }

@@ -45,7 +45,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="{{route('client.index')}}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <defs>
@@ -99,37 +99,54 @@
                         </a>
                     </li>
 
-                    <!-- <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Orders &amp; Sales</span>
-            </li> -->
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Orders &amp; Sales</span>
+                    </li>
                     <!-- Orders and Sales -->
-                    <!-- <li class="menu-item">
-              <a
-                href="#"
-                target=""
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
-                <div data-i18n="Email">Pending Orders</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="#"
-                target=""
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Chat">Sales</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="#"
-                target=""
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Calendar">Calendar</div>
-              </a>
-            </li> -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-grid"></i>
+                            <div data-i18n="Kanban">Pending Orders</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('order.index') }}" target="" class="menu-link">
+                                    <div data-i18n="Analytics">All orders</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" target="" class="menu-link">
+                                    <div data-i18n="Analytics">My Orders</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('order.create') }}" target="" class="menu-link">
+                                    <div data-i18n="CRM">Create</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--li class="menu-item">
+                    <a
+                        href="#"
+                        target=""
+                        class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-chat"></i>
+                        <div data-i18n="Chat">Sales</div>
+                    </a>
+                    </li>
+                    <li class="menu-item">
+                    <a
+                        href="#"
+                        target=""
+                        class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-calendar"></i>
+                        <div data-i18n="Calendar">Calendar</div>
+                    </a>
+                    </li> -->
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Clients</span>
+                    </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-grid"></i>
@@ -149,44 +166,26 @@
                         </ul>
                     </li>
 
-                    <!-- Stock -->
-                    <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Stock</span></li> -->
-                    <!-- Products -->
-                    <!-- <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Products</div>
-              </a>
-            </li> -->
-                    <!-- Material -->
-                    <!-- <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Material</div>
-              </a>
-            </li> -->
-
-
                     <!-- Misc -->
                     <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-            <li class="menu-item">
-              <a
-                href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                target=""
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                target=""
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-              </a>
-            </li> -->
+                    <li class="menu-item">
+                    <a
+                        href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                        target=""
+                        class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-support"></i>
+                        <div data-i18n="Support">Support</div>
+                    </a>
+                    </li>
+                    <li class="menu-item">
+                    <a
+                        href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
+                        target=""
+                        class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-file"></i>
+                        <div data-i18n="Documentation">Documentation</div>
+                    </a>
+                    </li> -->
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -217,8 +216,12 @@
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <img src="{{ asset('/sneat/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                    <div class="avatar">
+                                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                            <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
+                                        @else
+                                            <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                                        @endif
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -226,13 +229,17 @@
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ asset('/sneat/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                                    <div class="avatar">
+                                                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                                            <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
+                                                        @else
+                                                            <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle" /-->
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-medium d-block">{{ auth()->user()->name }}</span>
+                                                    <small class="text-muted">{{ auth()->user()->email }}</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -256,14 +263,17 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="javascript:void(0);">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
-                            <!--/ User -->
                         </ul>
                     </div>
                 </nav>
@@ -274,14 +284,14 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                    
-                        <!-- Layout Demo -->
-                        {{ $slot }}
-                        <!-- <div class="layout-demo-wrapper">
+
+                    <!-- Layout Demo -->
+                    {{ $slot }}
+                    <!-- <div class="layout-demo-wrapper">
                 
                         </div> -->
-                        <!--/ Layout Demo -->
-                    
+                    <!--/ Layout Demo -->
+
                     <!-- / Content -->
 
 

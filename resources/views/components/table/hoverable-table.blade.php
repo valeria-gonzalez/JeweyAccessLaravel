@@ -6,7 +6,7 @@
             <thead>
                 <tr>
                     @foreach ($headings as $heading)
-                    <th>{{ $heading }}</th>
+                        <th>{{ $heading }}</th>
                     @endforeach
 
                     @if ($actions != [])
@@ -18,7 +18,19 @@
                 @foreach ($models as $model)
                 <tr>
                     @foreach ($properties as $prop)
-                    <td>{{ $model->$prop }}</td>
+                        @if ($prop == 'status')
+                            <td>
+                                @if ($model->$prop == 'PENDING')
+                                    <span class="badge rounded-pill bg-label-warning">Pending</span>
+                                @elseif ($model->$prop == 'DELIVERED')
+                                    <span class="badge rounded-pill bg-label-success">Delivered</span>
+                                @elseif ($model->$prop == 'CANCELLED')
+                                    <span class="badge rounded-pill bg-label-danger">Cancelled</span>
+                                @endif
+                            </td>
+                        @else
+                        <td>{{ $model->$prop }}</td>
+                        @endif
                     @endforeach
 
                     @if ($actions != [])
@@ -28,18 +40,30 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    @for ($i = 0; $i < count($actions); $i++) @php $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; @endphp @if ($action=='Delete' ) <form class="dropdown-item" action="{{route('client.destroy', $model)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <i class="bx bx-edit-alt me-1"></i>
-                                        <input type="submit" value="Delete" style="background-color: transparent; border: none; color: #ff817b">
-                                        </form>
+                                    @for ($i = 0; $i < count($actions); $i++) 
+                                        @php $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; @endphp 
+                                        
+                                        @if ($action=='Delete' ) 
+                                            <form class="dropdown-item" action="{{route('client.destroy', $model)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <i class="bx bx-edit-alt me-1"></i>
+                                                <input type="submit" value="Delete" style="background-color: transparent; border: none; color: #ff817b">
+                                            </form>
+
                                         @elseif($action == 'Edit' || $action == 'Show')
-                                        <a class="dropdown-item" href="{{ route($actionRoute, $model->id) }}"><i class="bx bx-edit-alt me-1"></i> {{ $action }}</a>
+                                            <a class="dropdown-item" href="{{ route($actionRoute, $model->id) }}">
+                                                <i class="bx bx-edit-alt me-1"></i> 
+                                                {{ $action }}
+                                            </a>
+
                                         @else
-                                        <a class="dropdown-item" href="{{ $actionRoute }}"><i class="bx bx-edit-alt me-1"></i> {{ $action }}</a>
+                                            <a class="dropdown-item" href="{{ $actionRoute }}">
+                                                <i class="bx bx-edit-alt me-1"></i> 
+                                                {{ $action }}
+                                            </a>
                                         @endif
-                                        @endfor
+                                    @endfor
                                 </div>
                             </div>
                         </td>

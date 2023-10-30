@@ -22,6 +22,7 @@
                 <x-forms.form-input type="text" label="First Lastname" id="first_lastname" placeholder="Doe" value="{{ old('first_lastname') }}" />
                 <x-forms.form-input type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ old('second_lastname') }}" />
                 <x-forms.form-input type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ old('phone_number') }}" />
+                
                 <x-forms.form-submit> Create </x-forms.form-submit>
             </form>
             </x-horizontal-form>

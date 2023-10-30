@@ -36,12 +36,7 @@ class ClientController extends Controller
             'phone_number' => 'required|min:10|max:100',
         ]);
 
-        $client = new Client();
-        $client->name = strtoupper($request->name);
-        $client->first_lastname = strtoupper($request->first_lastname);
-        $client->second_lastname = strtoupper($request->second_lastname);
-        $client->phone_number = $request->phone_number;
-        $client->save();
+        Client::create($request->all());
         return redirect()->route('client.index');
     }
 
@@ -73,11 +68,13 @@ class ClientController extends Controller
             'phone_number' => 'required|min:10|max:100',
         ]);
 
-        $client->name = strtoupper($request->name);
-        $client->first_lastname = strtoupper($request->first_lastname);
-        $client->second_lastname = strtoupper($request->second_lastname);
-        $client->phone_number = $request->phone_number;
-        $client->save();
+        $request->merge([
+            'name' => strtoupper($request->name),
+            'first_lastname' => strtoupper($request->first_lastname),
+            'second_lastname' => strtoupper($request->second_lastname),
+        ]);
+
+        Client::where('id', $client->id)->update($request->except('_token', '_method'));
         return redirect()->route('client.index');
     }
 
@@ -86,11 +83,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        try {
-            $client->delete();
-            return redirect()->route('client.index');
-        } catch (\Exception $e) {
-            return redirect()->route('client.index');
-        }
+        $client->delete();
+        return redirect()->route('client.index');
     }
 }

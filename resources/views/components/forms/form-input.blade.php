@@ -6,7 +6,7 @@
             id="{{ $id }}" 
             name="{{ $id }}" 
             placeholder="{{ $placeholder }}" 
-            value="{{ $value }}"     
+            value="{{ $value }}"   
         />
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,7 @@ class OrderController extends Controller
         return view('order.order_index', compact('orders'));
     }
 
-    public function indexByUser(Request $request){
+    public function myorders(){
         $orders = Order::where('user_id', Auth::id())
             ->orderBy('delivery_date', 'asc')
             ->orderBy('delivery_time', 'asc')
@@ -37,6 +38,8 @@ class OrderController extends Controller
      */
     public function create()
     {
+        $products = Product::all();
+
         $clients = Client::all()->map(function ($client) {
             return [
                 'id' => $client->id,
@@ -46,7 +49,7 @@ class OrderController extends Controller
             ];
         });
 
-        return view('order.order_create', compact('clients'));
+        return view('order.order_create', compact('clients', 'products'));
     }
 
     /**

@@ -25,6 +25,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Products::class);
+    }
+
     public function setStreetAttribute($value)
     {
         $this->attributes['street'] = strtoupper($value);

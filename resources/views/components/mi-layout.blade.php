@@ -98,7 +98,7 @@
                             <div data-i18n="Dashboards">Dashboard</div>
                         </a>
                     </li>
-
+                    
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Orders &amp; Sales</span>
                     </li>
@@ -111,11 +111,11 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ route('order.index') }}" target="" class="menu-link">
-                                    <div data-i18n="Analytics">All orders</div>
+                                    <div data-i18n="Analytics">All Orders</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" target="" class="menu-link">
+                                <a href="{{ route('order.myorders') }}" target="" class="menu-link">
                                     <div data-i18n="Analytics">My Orders</div>
                                 </a>
                             </li>
@@ -134,19 +134,36 @@
                         <i class="menu-icon tf-icons bx bx-chat"></i>
                         <div data-i18n="Chat">Sales</div>
                     </a>
+                    </li--->
+
+                    <!-- Products -->
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text"> Products </span>
                     </li>
                     <li class="menu-item">
-                    <a
-                        href="#"
-                        target=""
-                        class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-calendar"></i>
-                        <div data-i18n="Calendar">Calendar</div>
-                    </a>
-                    </li> -->
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-grid"></i>
+                            <div data-i18n="Kanban">Products</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('product.index') }}" target="" class="menu-link">
+                                    <div data-i18n="Analytics">All products</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('product.create') }}" target="" class="menu-link">
+                                    <div data-i18n="CRM">Create</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Clients -->
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Clients</span>
                     </li>
+
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-grid"></i>
@@ -155,7 +172,7 @@
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a href="{{ route('client.index') }}" target="" class="menu-link">
-                                    <div data-i18n="Analytics">List</div>
+                                    <div data-i18n="Analytics"> All Clients </div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -248,7 +265,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('user') }}">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>

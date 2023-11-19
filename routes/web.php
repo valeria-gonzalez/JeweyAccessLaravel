@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,13 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
     Route::resource('client', ClientController::class);
+    Route::get('order/myorders', [OrderController::class, 'myorders'])->name('order.myorders');
     Route::resource('order', OrderController::class);
+    Route::resource('product', ProductController::class);
 });
-
-Route::get('prueba', function () {
-    return view('prueba');
-});
+// Route::get('prueba', function () {
+//     return view('prueba');
+// });
 
 Route::middleware([
     'auth:sanctum',

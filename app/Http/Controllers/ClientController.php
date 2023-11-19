@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -74,7 +78,9 @@ class ClientController extends Controller
             'second_lastname' => strtoupper($request->second_lastname),
         ]);
 
-        Client::where('id', $client->id)->update($request->except('_token', '_method'));
+        Client::where('id', $client->id)
+            ->update($request->except('_token', '_method'));
+            
         return redirect()->route('client.index');
     }
 

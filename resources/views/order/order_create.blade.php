@@ -20,7 +20,7 @@
                 @csrf <!--cross site resource forgery-->
 
                 <x-forms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'name']"/>
-
+                
                 <x-forms.money-input label="Total*" id="total" placeholder="100.00" value="{{ old('total') }}" />
                 <x-forms.form-input type="date" label="Delivery Date*" id="delivery_date" placeholder="2021-10-24" value="{{ old('delivery_date') }}" />
                 <x-forms.form-input type="time" label="Delivery Time*" id="delivery_time" placeholder="10:00" value="{{ old('delivery_time') }}" />
@@ -34,6 +34,8 @@
                 <x-forms.form-input type="text" label="References" id="references" placeholder="Near the church" value="{{ old('references') }}" />
                 
                 <x-forms.form-submit> Create </x-forms.form-submit>
+                
+                <!-- <x-forms.select-input label="Products*" id="product_id" :options="$products" :properties="['value'=>'id', 'text'=>'name']"/> -->
             </form>
             </x-horizontal-form>
     </div>

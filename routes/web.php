@@ -16,9 +16,11 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::view('/multistep', 'multistep')->name('multistep'); //last here
 
 Route::middleware('auth')->group(function(){
     Route::resource('client', ClientController::class);
@@ -26,9 +28,9 @@ Route::middleware('auth')->group(function(){
     Route::resource('order', OrderController::class);
     Route::resource('product', ProductController::class);
 });
-// Route::get('prueba', function () {
-//     return view('prueba');
-// });
+Route::get('prueba', function () {
+    return view('prueba');
+});
 
 Route::middleware([
     'auth:sanctum',

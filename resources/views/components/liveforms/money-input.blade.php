@@ -11,6 +11,7 @@
                 class="form-control" 
                 placeholder="{{ $placeholder }}"  
                 value = "{{ $value }}"
+                wire:model="{{ $id }}"
                 required
             />
         </div>

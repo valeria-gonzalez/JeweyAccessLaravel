@@ -18,10 +18,10 @@
             <form action="{{ route('client.update', $client) }}" method="POST">
                 @csrf <!--cross site resource forgery-->
                 @method('PATCH')
-                <x-forms.form-input type="text" label="Name" id="name" placeholder="John" value="{{ $client->name }}" />
-                <x-forms.form-input type="text" label="First Lastname" id="first_lastname" placeholder="Doe" value="{{ $client->first_lastname }}" />
-                <x-forms.form-input type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ $client->second_lastname }}" />
-                <x-forms.form-input type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ $client->phone_number }}" />
+                <x-forms.form-input-req type="text" label="Name" id="name" placeholder="John" value="{{ $client->name }}" />
+                <x-forms.form-input-req type="text" label="First Lastname" id="first_lastname" placeholder="Doe" value="{{ $client->first_lastname }}" />
+                <x-forms.form-input-req type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ $client->second_lastname }}" />
+                <x-forms.form-input-req type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ $client->phone_number }}" />
 
                 <x-forms.form-submit> Update </x-forms.form-submit>
             </form>

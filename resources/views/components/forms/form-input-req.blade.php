@@ -7,6 +7,7 @@
             name="{{ $id }}" 
             placeholder="{{ $placeholder }}" 
             value="{{ $value }}"  
+            required
         />
     </div>
 </div>

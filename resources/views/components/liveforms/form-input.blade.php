@@ -4,6 +4,7 @@
         <input type="{{ $type }}" 
             class="form-control" 
             id="{{ $id }}" 
+            wire:model="{{ $id }}"
             name="{{ $id }}" 
             placeholder="{{ $placeholder }}" 
             value="{{ $value }}"  

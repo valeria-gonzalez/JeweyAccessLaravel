@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -30,7 +31,7 @@ class OrderController extends Controller
             ->orderBy('delivery_time', 'asc')
             ->get();
         
-        return view('order.order_user_index', ['orders' => $orders]);
+        return view('order.order_user_index', compact('orders'));
     }
 
     /**
@@ -38,18 +39,19 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        // $products = Product::all();
 
-        $clients = Client::all()->map(function ($client) {
-            return [
-                'id' => $client->id,
-                'name' => $client->name . ' '
-                    . $client->first_lastname . ' '
-                    . $client->second_lastname,
-            ];
-        });
+        // $clients = Client::all()->map(function ($client) {
+        //     return [
+        //         'id' => $client->id,
+        //         'name' => $client->name . ' '
+        //             . $client->first_lastname . ' '
+        //             . $client->second_lastname,
+        //     ];
+        // });
 
-        return view('order.order_create', compact('clients', 'products'));
+        // return view('order.order_create', compact('clients', 'products'));
+        return view('order.order_create');
     }
 
     /**
@@ -68,9 +70,9 @@ class OrderController extends Controller
             'state' => 'required',
             'country' => 'required',
             'zipcode' => 'required',
-            'references' => 'required',
+            'client_id' => 'required',
         ]);
-
+        
         $request->merge(['user_id' => Auth::id()]);
         Order::create($request->all());
 
@@ -98,7 +100,7 @@ class OrderController extends Controller
                     . $client->second_lastname,
             ];
         });
-        return view('order/order_edit', compact('order'), compact('clients'));
+        return view('order/order_edit', compact('clients', 'order'));
     }
 
     /**
@@ -117,7 +119,7 @@ class OrderController extends Controller
             'state' => 'required',
             'country' => 'required',
             'zipcode' => 'required',
-            'references' => 'required',
+            'client_id' => 'required',
         ]);
 
         $request->merge([

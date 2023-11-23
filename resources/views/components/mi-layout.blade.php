@@ -28,7 +28,8 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
-    <!-- Page CSS -->
+    <!-- Livewire -->
+    @livewireStyles
 
     <!-- Helpers -->
     <script src="{{ asset('/sneat/assets/vendor/js/helpers.js') }}"></script>
@@ -265,7 +266,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('user') }}">
+                                        <a class="dropdown-item" href="#">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -359,6 +360,9 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <!--Livewire scripts-->
+    @livewireScripts
 </body>
 
 </html>

@@ -19,10 +19,10 @@
             <form action="{{ route('product.update', $product) }}" method="POST">
                 @csrf <!--cross site resource forgery-->
                 @method('PATCH')
-                <x-forms.form-input type="text" label="Name*" id="name" placeholder="Skull Bracelet" value="{{ $product->name }}" />
-                <x-forms.form-input type="text" label="Category*" id="category" placeholder="Bracelet" value="{{ $product->category }}" />
-                <x-forms.money-input label="Price*" id="price" placeholder="100.00" value="{{ $product->price }}" />
-                <x-forms.form-input type="number" label="Stock*" id="stock" placeholder="12" value="{{ $product->stock }}" />
+                <x-forms.form-input-req type="text" label="Name*" id="name" placeholder="Skull Bracelet" value="{{ $product->name }}" />
+                <x-forms.form-input-req type="text" label="Category*" id="category" placeholder="Bracelet" value="{{ $product->category }}" />
+                <x-forms.money-input-req label="Price*" id="price" placeholder="100.00" value="{{ $product->price }}" />
+                <x-forms.form-input-req type="number" label="Stock*" id="stock" placeholder="12" value="{{ $product->stock }}" />
                 <x-forms.form-input type="text" label="Description" id="description" placeholder="Beautiful necklace." value="{{ $product->description }}" />
                 
                 <x-forms.form-submit> Update </x-forms.form-submit>

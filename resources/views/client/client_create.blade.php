@@ -18,10 +18,10 @@
             <!-- Create Post Form -->
             <form action="{{ route('client.store') }}" method="POST">
                 @csrf <!--cross site resource forgery-->
-                <x-forms.form-input type="text" label="Name" id="name" placeholder="John" value="{{ old('name') }}" />
-                <x-forms.form-input type="text" label="First Lastname" id="first_lastname" placeholder="Doe" value="{{ old('first_lastname') }}" />
-                <x-forms.form-input type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ old('second_lastname') }}" />
-                <x-forms.form-input type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ old('phone_number') }}" />
+                <x-forms.form-input-req type="text" label="Name" id="name" placeholder="John" value="{{ old('name') }}" />
+                <x-forms.form-input-req type="text" label="First Lastname" id="first_lastname" placeholder="Doe" value="{{ old('first_lastname') }}" />
+                <x-forms.form-input-req type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ old('second_lastname') }}" />
+                <x-forms.form-input-req type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ old('phone_number') }}" />
                 
                 <x-forms.form-submit> Create </x-forms.form-submit>
             </form>

@@ -44,7 +44,7 @@
                                         @php $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; @endphp 
                                         
                                         @if ($action=='Delete' ) 
-                                            <form class="dropdown-item" action="{{route('client.destroy', $model)}}" method="POST">
+                                            <form class="dropdown-item" action="{{route($actionRoute, $model)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <i class="bx bx-edit-alt me-1"></i>

@@ -2,7 +2,7 @@
     <label class="col-sm-2 col-form-label" for="{{ $id }}">{{ $label }}</label>
     <div class="col-sm-10">
         <div class="mb-3">
-            <select name="{{ $id }}" id="{{ $id }}" class="form-select">
+            <select name="{{ $id }}" id="{{ $id }}" class="form-select" wire:model="{{ $id }}">
                 <option value="" selected> Select an option </option>
                 @foreach ($options as $option)
                 <option value="{{ $option[$properties['value']] }}">{{ $option[$properties['text']] }}</option>

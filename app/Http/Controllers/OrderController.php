@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Client;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,18 +37,6 @@ class OrderController extends Controller
      */
     public function create()
     {
-        // $products = Product::all();
-
-        // $clients = Client::all()->map(function ($client) {
-        //     return [
-        //         'id' => $client->id,
-        //         'name' => $client->name . ' '
-        //             . $client->first_lastname . ' '
-        //             . $client->second_lastname,
-        //     ];
-        // });
-
-        // return view('order.order_create', compact('clients', 'products'));
         return view('order.order_create');
     }
 
@@ -84,7 +70,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('order/order_show', compact('order'));
+        $products = $order->products;
+        return view('order/order_show', compact('order', 'products'));
     }
 
     /**
@@ -92,15 +79,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $clients = Client::all()->map(function ($client) {
-            return [
-                'id' => $client->id,
-                'name' => $client->name . ' '
-                    . $client->first_lastname . ' '
-                    . $client->second_lastname,
-            ];
-        });
-        return view('order/order_edit', compact('clients', 'order'));
+        return view('order.order_edit', compact('order'));
     }
 
     /**

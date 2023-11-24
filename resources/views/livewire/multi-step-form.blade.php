@@ -13,53 +13,100 @@
     <!-- Create Post Form -->
 
     <form wire:submit.prevent="{{ $method }}">
-        @csrf <!--cross site resource forgery-->
+        @csrf
 
         <!--STEP 1-->
         @if($currentStep == 1)
-        <x-liveforms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'name']" />
+        <div class="step-one">
+            <x-liveforms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'name']" />
+        </div>
         @endif
 
         <!--STEP2-->
         @if($currentStep == 2)
-        <div class="step-one">
-            <x-liveforms.money-input label="Total*" id="total" placeholder="100.00" value="{{ old('total') }}" />
-            <x-liveforms.form-input type="date" label="Delivery Date*" id="delivery_date" placeholder="2021-10-24" value="{{ old('delivery_date') }}" />
-            <x-liveforms.form-input type="time" label="Delivery Time*" id="delivery_time" placeholder="10:00" value="{{ old('delivery_time') }}" />
-            <x-liveforms.form-input type="text" label="Street*" id="street" placeholder="Ruben Romero" value="{{ old('street') }}" />
-            <x-liveforms.form-input type="text" label="Apt. Number*" id="apt_number" placeholder="713-3" value="{{ old('apt_number') }}" />
-            <x-liveforms.form-input type="text" label="Neighborhood*" id="neighborhood" placeholder="Tonala" value="{{ old('neighborhood') }}" />
-            <x-liveforms.form-input type="text" label="City*" id="city" placeholder="Guadalajara" value="{{ old('city') }}" />
-            <x-liveforms.form-input type="text" label="State*" id="state" placeholder="Jalisco" value="{{ old('state') }}" />
-            <x-liveforms.form-input type="text" label="Country*" id="country" placeholder="Mexico" value="{{ old('country') }}" />
-            <x-liveforms.form-input type="text" label="Zipcode*" id="zipcode" placeholder="45678" value="{{ old('zipcode') }}" />
-            <x-liveforms.form-input type="text" label="References" id="references" placeholder="Near the church" value="{{ old('references') }}" />
+        <div class="step-two">
+            <x-liveforms.form-input-req type="date" label="Delivery Date*" id="delivery_date" placeholder="2021-10-24"/>
+            <x-liveforms.form-input-req type="time" label="Delivery Time*" id="delivery_time" placeholder="10:00"/>
+            <x-liveforms.form-input-req type="text" label="Street*" id="street" placeholder="Ruben Romero"/>
+            <x-liveforms.form-input-req type="text" label="Apt. Number*" id="apt_number" placeholder="713-3"/>
+            <x-liveforms.form-input-req type="text" label="Neighborhood*" id="neighborhood" placeholder="Tonala"/>
+            <x-liveforms.form-input-req type="text" label="City*" id="city" placeholder="Guadalajara"/>
+            <x-liveforms.form-input-req type="text" label="State*" id="state" placeholder="Jalisco"/>
+            <x-liveforms.form-input-req type="text" label="Country*" id="country" placeholder="Mexico"/>
+            <x-liveforms.form-input-req type="text" label="Zipcode*" id="zipcode" placeholder="45678"/>
+            <x-liveforms.form-input type="text" label="References" id="references" placeholder="Near the church"/>
         </div>
         @endif
 
         <!--STEP 2-->
         @if($currentStep == 3)
-        <div class="step-two">
-             @livewire('product-select')
+        <div class="step-three">
+            <div class="card-body">
+                <table class="table" id="products_table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($orderProducts as $index => $orderProduct)
+                        <tr>
+                            <td>
+                                <select name="orderProducts[{{$index}}][product_id]" 
+                                        wire:model="orderProducts.{{$index}}.product_id" 
+                                        class="form-control">
+                                    <option value="">-- choose product --</option>
+                                    @if($allProducts->count() > 0)
+                                        @foreach ($allProducts as $product)
+                                            @if($product->stock > 0)
+                                                <option value="{{ $product->id }}">
+                                                    {{ $product->name }} (${{ number_format($product->price, 2) }}) ({{ $product->stock }} available)
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" 
+                                        name="orderProducts[{{$index}}][quantity]" 
+                                        class="form-control" 
+                                        wire:model="orderProducts.{{$index}}.quantity" 
+                                        min="1" />
+                            </td>
+                            <td>
+                                <a href="#" wire:click.prevent="removeProduct({{$index}})">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-sm btn-secondary" wire:click.prevent="addProduct">+ Add Another Product</button>
+                    </div>
+                </div>
+            </div>
         </div>
         @endif
 
         <div class="action-buttons d-flex justify-content-end bg-white pt-2 pb-2">
-            @if($currentStep > 1 and $currentStep <= $totalSteps) 
-            <button type="button" class="btn btn-md btn-secondary m-1" wire:click="decreaseStep()">
+            @if($currentStep > 1 and $currentStep <= $totalSteps) <button type="button" class="btn btn-md btn-secondary m-1" wire:click="decreaseStep()">
                 Back
-            </button>
-            @endif
+                </button>
+                @endif
 
-            @if($currentStep >= 1 and $currentStep < $totalSteps) 
-            <button type="button" class="btn btn-md btn-success m-1" wire:click="increaseStep()">
-                Next
-            </button>
-            @endif
+                @if($currentStep >= 1 and $currentStep < $totalSteps) <button type="button" class="btn btn-md btn-success m-1" wire:click="increaseStep()">
+                    Next
+                    </button>
+                    @endif
 
-            @if($currentStep == $totalSteps)
-            <button type="submit" class="btn btn-md btn-primary m-1">Create</button>
-            @endif
+                    @if($currentStep == $totalSteps)
+                    <button type="submit" class="btn btn-md btn-primary m-1">{{ ucfirst($method) }}</button>
+                    @endif
         </div>
     </form>
 </div>

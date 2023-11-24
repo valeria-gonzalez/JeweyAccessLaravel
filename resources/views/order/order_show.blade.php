@@ -29,6 +29,7 @@
                     </button>
                 </li>
             </ul>
+
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="navs-pills-justified-order" role="tabpanel">
                     <small class="text-light fw-medium">General Information</small>
@@ -75,8 +76,8 @@
                         <dt class="col-sm-3"> References </dt>
                         <dd class="col-sm-9"> {{ $order->references }} </dd>
                     </dl>
-
                 </div>
+
                 <div class="tab-pane fade" id="navs-pills-justified-client" role="tabpanel">
                     <small class="text-light fw-medium">Client Information</small>
                     <dl class="row mt-2">
@@ -91,9 +92,17 @@
 
                     </dl>
                 </div>
-                <div class="tab-pane fade" id="navs-pills-justified-products" role="tabpanel">
 
+                <div class="tab-pane fade" id="navs-pills-justified-product" role="tabpanel">
+                    <small class="text-light fw-medium">Product Information</small>
+                    <dl class="row mt-2">
+                    @foreach($products as $product)
+                        <dt class="col-sm-3"> {{ $product->name }} ($ {{ $product->price }})</dt>
+                        <dd class="col-sm-9"> x{{ $product->pivot->quantity }} </dd>
+                    @endforeach
+                    </dl>
                 </div>
+
                 <div class="tab-pane fade" id="navs-pills-justified-system" role="tabpanel">
                     <small class="text-light fw-medium">System Information</small>
                     <dl class="row mt-2">
@@ -120,7 +129,6 @@
                             <span class="badge rounded-pill bg-label-danger">Cancelled</span>
                         </dd>
                         @endif
-
                     </dl>
                 </div>
             </div>

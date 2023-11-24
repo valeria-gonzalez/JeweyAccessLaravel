@@ -16,7 +16,6 @@ class FormInput extends Component
         public string $label = '',
         public string $type = 'text',
         public string $placeholder = '',
-        public string $value = '',
     )
     {
         //

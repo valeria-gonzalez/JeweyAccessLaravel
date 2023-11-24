@@ -6,8 +6,7 @@
             id="{{ $id }}" 
             wire:model="{{ $id }}"
             name="{{ $id }}" 
-            placeholder="{{ $placeholder }}" 
-            value="{{ $value }}"  
+            placeholder="{{ $placeholder }}"  
             required
         />
     </div>

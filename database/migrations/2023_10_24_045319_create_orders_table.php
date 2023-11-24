@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('client_id')->constrained();
-            $table->double('total');
+            $table->double('total')->default(0);
             $table->date('delivery_date');
             $table->time('delivery_time');
             $table->string('street');

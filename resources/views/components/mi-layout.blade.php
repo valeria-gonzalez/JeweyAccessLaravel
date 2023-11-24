@@ -93,12 +93,12 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="#" target="" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboard</div>
                         </a>
-                    </li>
+                    </li> -->
                     
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Orders &amp; Sales</span>
@@ -107,7 +107,7 @@
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-grid"></i>
-                            <div data-i18n="Kanban">Pending Orders</div>
+                            <div data-i18n="Kanban">Orders</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">

@@ -1,4 +1,5 @@
 <x-mi-layout>
+    @include('sweetalert::alert')
     <div class="container-fluid flex-grow-1 container-p-y">
     <x-text.page-heading1 span="Client / " after-span="List Clients"/> 
 

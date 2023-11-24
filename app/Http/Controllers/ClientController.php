@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientController extends Controller
 {
@@ -41,6 +42,7 @@ class ClientController extends Controller
         ]);
 
         Client::create($request->all());
+        Alert::success('Client Created Successfully', 'We have created the client successfully');
         return redirect()->route('client.index');
     }
 
@@ -80,7 +82,8 @@ class ClientController extends Controller
 
         Client::where('id', $client->id)
             ->update($request->except('_token', '_method'));
-            
+
+        Alert::success('Client Updated Successfully', 'We have updated the client successfully');
         return redirect()->route('client.index');
     }
 
@@ -90,6 +93,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
+        Alert::warning('Client Deleted', 'The client has been deleted');
         return redirect()->route('client.index');
     }
 }

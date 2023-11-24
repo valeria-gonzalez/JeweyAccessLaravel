@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -42,6 +43,7 @@ class ProductController extends Controller
         $request->merge(['user_id' => Auth::id()]);
         Product::create($request->all());
 
+        Alert::success('Product Created Successfully', 'We have created the product successfully');
         return redirect()->route('product.index');
     }
 
@@ -83,6 +85,7 @@ class ProductController extends Controller
         Product::where('id', $product->id)
             ->update($request->except('_token', '_method'));
 
+        Alert::success('Product Updated Successfully', 'We have updated the product successfully');
         return redirect()->route('product.index');
     }
 
@@ -92,6 +95,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        Alert::warning('Product Deleted', 'The product has been deleted');
         return redirect()->route('product.index');
     }
 }

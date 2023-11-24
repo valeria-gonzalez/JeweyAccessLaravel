@@ -48,7 +48,10 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <i class="bx bx-edit-alt me-1"></i>
-                                                <input type="submit" value="Delete" style="background-color: transparent; border: none; color: #ff817b">
+                                                <input type="submit" 
+                                                        value="Delete" 
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"
+                                                        style="background-color: transparent; border: none; color: #ff817b">
                                             </form>
 
                                         @elseif($action == 'Edit' || $action == 'Show')

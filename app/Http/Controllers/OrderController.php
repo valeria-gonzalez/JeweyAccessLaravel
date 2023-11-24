@@ -122,6 +122,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+        Alert::warning('Order Deleted', 'The order has been deleted');
         return redirect()->route('order.index');
     }
 }

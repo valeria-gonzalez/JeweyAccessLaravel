@@ -39,6 +39,16 @@
                         <dt class="col-sm-3"> Description </dt>
                         <dd class="col-sm-9"> {{ $product->description }} </dd>
                     </dl>
+                    
+                    <small class="text-light fw-medium">Product Image</small>
+                    <dl class="row mt-2">
+                        <div class="col-md">
+                            <img class="img-fluid rounded float-left d-block w-20" 
+                                src="{{ asset('storage/' . $product->image) }}" 
+                                alt="{{ $product->name }}" 
+                            />
+                        </div>
+                    </dl>
                 </div>
 
                 <div class="tab-pane fade" id="navs-pills-justified-material" role="tabpanel">
@@ -59,4 +69,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- carrousel -->
+
+    </div>
 </x-mi-layout>

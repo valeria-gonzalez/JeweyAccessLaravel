@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function(){
     Route::get('order/myorders', [OrderController::class, 'myorders'])->name('order.myorders');
     Route::resource('order', OrderController::class);
     Route::resource('product', ProductController::class);
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 // Route::get('prueba', function () {
 //     return view('prueba');
@@ -38,9 +41,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
-
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 });

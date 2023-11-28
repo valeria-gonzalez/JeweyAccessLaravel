@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->decimal('price', 8, 2);
             $table->string('description');
+            $table->string('image')->nullable();
         });
     }
 

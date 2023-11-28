@@ -16,15 +16,16 @@
             @endif
 
             <!-- Create Post Form -->
-            <form action="{{ route('product.update', $product) }}" method="POST">
+            <form action="{{ route('product.update', $product) }}" method="POST" enctype="multipart/form-data">
                 @csrf <!--cross site resource forgery-->
                 @method('PATCH')
                 <x-forms.form-input-req type="text" label="Name*" id="name" placeholder="Skull Bracelet" value="{{ $product->name }}" />
                 <x-forms.form-input-req type="text" label="Category*" id="category" placeholder="Bracelet" value="{{ $product->category }}" />
-                <x-forms.money-input-req label="Price*" id="price" placeholder="100.00" value="{{ $product->price }}" />
+                <x-forms.money-input label="Price*" id="price" placeholder="100.00" value="{{ $product->price }}" />
                 <x-forms.form-input-req type="number" label="Stock*" id="stock" placeholder="12" value="{{ $product->stock }}" />
                 <x-forms.form-input type="text" label="Description" id="description" placeholder="Beautiful necklace." value="{{ $product->description }}" />
-                
+                <x-forms.form-input type="file" label="Image" id="imge" placeholder="" value="" />
+
                 <x-forms.form-submit> Update </x-forms.form-submit>
             </form>
             </x-horizontal-form>

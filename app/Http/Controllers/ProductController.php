@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -38,9 +39,17 @@ class ProductController extends Controller
             'stock' => 'required|integer',
             'price' => 'required|decimal:2',
             'description' => 'nullable|string|max:255',
+            'imge' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $request->merge(['user_id' => Auth::id()]);
+
+        if ($request->hasFile('imge')) {
+            $imagePath = $request->file('imge')->store('product_images', 'public');
+            
+            $request->merge(['image' => $imagePath]);
+        }
+        
         Product::create($request->all());
 
         Alert::success('Product Created Successfully', 'We have created the product successfully');
@@ -74,6 +83,7 @@ class ProductController extends Controller
             'stock' => 'required|integer',
             'price' => 'required|decimal:2',
             'description' => 'nullable|string|max:255',
+            'imge' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $request->merge([
@@ -81,9 +91,18 @@ class ProductController extends Controller
             'category' => strtoupper($request->category),
             'description' => strtoupper($request->description),
         ]);
+
+        if ($request->hasFile('imge')) {
+            Storage::disk('public')->delete($product->image);
+            //Storage::delete($product->image);
+
+            $path = $request->file('imge')->store('product_images', 'public');
+            
+            $product->update(['image' => $path]);
+        }
         
         Product::where('id', $product->id)
-            ->update($request->except('_token', '_method'));
+            ->update($request->except('_token', '_method', 'imge'));
 
         Alert::success('Product Updated Successfully', 'We have updated the product successfully');
         return redirect()->route('product.index');
@@ -94,7 +113,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+        
         $product->delete();
+        
         Alert::warning('Product Deleted', 'The product has been deleted');
         return redirect()->route('product.index');
     }

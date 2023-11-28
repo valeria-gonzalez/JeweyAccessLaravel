@@ -41,5 +41,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    Route::get('order', [OrderController::class, 'index'])->name('order.index');
 });

@@ -28,6 +28,8 @@
                                     <span class="badge rounded-pill bg-label-danger">Cancelled</span>
                                 @endif
                             </td>
+                        @elseif ($prop == 'user')
+                            <td>{{ $model->$prop->name }}</td>
                         @else
                         <td>{{ $model->$prop }}</td>
                         @endif

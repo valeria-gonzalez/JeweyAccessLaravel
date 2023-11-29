@@ -1,34 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client</title>
-</head>
-<body>
-    <h1>Client information</h1>
-    <table>
-        <thead>
-            <throw>
-                <td>Name</td>
-                <td>First Lastname</td>
-                <td>Second Lastname</td>
-                <td>Phone Number</td>
-            <throw>
-        </thead>
-        <tbody>
-                <tr>
-                    <td>{{ $client->name }}</td>
-                    <td>{{ $client->first_lastname }}</td>
-                    <td>{{ $client->second_lastname }}</td>
-                    <td>{{ $client->phone_number }}</td>
-                </tr>
-        </tbody>
-    </table>
-    <a href = "{{ route('client.index') }}"> Go back</a>
-    
-</body>
-</html> -->
 <x-mi-layout>
     <div class="container-fluid flex-grow-1 container-p-y">
         <x-text.page-heading1 span="Client / " after-span="Show Client" />
@@ -48,8 +17,6 @@
                 </li>
             </ul>
 
-
-
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="navs-pills-justified-client" role="tabpanel">
                     <small class="text-light fw-medium">Client Information</small>
@@ -57,6 +24,9 @@
                         @php
                         $client_name = $client->name . ' ' . $client->first_lastname . ' ' . $client->second_lastname;
                         @endphp
+                        <dt class="col-sm-3"> Client Id </dt>
+                        <dd class="col-sm-9"> {{ $client->id }} </dd>
+
                         <dt class="col-sm-3"> Name </dt>
                         <dd class="col-sm-9"> {{ $client_name }} </dd>
 
@@ -68,9 +38,6 @@
                 <div class="tab-pane fade" id="navs-pills-justified-system" role="tabpanel">
                     <small class="text-light fw-medium">System Information</small>
                     <dl class="row mt-2">
-                        <dt class="col-sm-3"> Client Id </dt>
-                        <dd class="col-sm-9"> {{ $client->id }} </dd>
-
                         <dt class="col-sm-3"> Created at </dt>
                         <dd class="col-sm-9"> {{ $client->created_at }} </dd>
 

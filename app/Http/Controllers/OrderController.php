@@ -16,7 +16,8 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::orderBy('delivery_date', 'asc')
+        $orders = Order::with('user')
+            ->orderBy('delivery_date', 'asc')
             ->orderBy('delivery_time', 'asc')
             ->get();
 

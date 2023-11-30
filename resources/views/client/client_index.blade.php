@@ -5,9 +5,9 @@
 
     <x-table.hoverable-table 
         title="All Clients"
-        :headings="['Id', 'Name', 'Last Name', 'Last Name']"
+        :headings="['Id', 'Name', 'Last Name', 'Last Name', 'Created By']"
         :models="$clients"
-        :properties="['id', 'name', 'first_lastname', 'second_lastname']"
+        :properties="['id', 'name', 'first_lastname', 'second_lastname',  'user']"
         :actions="['Show', 'Edit','Delete']"
         :action-routes="['client.show', 
                           'client.edit', 

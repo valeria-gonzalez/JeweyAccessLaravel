@@ -11,7 +11,18 @@ class Client extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'first_lastname', 'second_lastname', 'phone_number'];
+    protected $fillable = [
+        'name', 
+        'first_lastname', 
+        'second_lastname', 
+        'phone_number',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function orders()
     {

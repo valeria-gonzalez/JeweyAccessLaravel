@@ -69,7 +69,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $products = $order->products;
-        return view('order/order_show', compact('order', 'products'));
+        return view('order.order_show', compact('order', 'products'));
     }
 
     /**

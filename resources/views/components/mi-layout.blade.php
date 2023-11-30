@@ -259,12 +259,7 @@
                                                     <span class="fw-medium d-block">{{ auth()->user()->name }}</span>
                                                     <small class="text-muted">{{ auth()->user()->email }}</small>
                                                     <br> 
-                                                    @if (auth()->user()->is_admin)
-                                                        <span class="badge bg-success mt-1">Admin</span>
-                                                    @else
-                                                        <span class="badge bg-primary mt-1">Member</span>
-                                                    @endif
-                                                    
+                                                    <span class="badge bg-primary mt-1">Member</span>
                                                 </div>
                                             </div>
                                         </a>

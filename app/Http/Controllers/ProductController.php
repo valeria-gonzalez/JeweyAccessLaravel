@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::All();
+        $products = Product::with('user')->get();
 
         return view('product.product_index', compact('products'));
     }
@@ -69,7 +70,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product/product_edit', compact('product'));
+        return view('product.product_edit', compact('product'));
     }
 
     /**
@@ -77,6 +78,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $response = Gate::inspect('update', $product);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('product.index');
+        }
+
         $req = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
@@ -113,6 +120,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $response = Gate::inspect('delete', $product);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('product.index');
+        }
+
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }

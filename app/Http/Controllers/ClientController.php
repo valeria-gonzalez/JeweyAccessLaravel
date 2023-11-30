@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('client/client_index', compact('clients'));
+        $clients = Client::with('user')->get();
+        return view('client.client_index', compact('clients'));
     }
 
     /**
@@ -26,7 +24,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client/client_create');
+        return view('client.client_create');
     }
 
     /**
@@ -41,6 +39,7 @@ class ClientController extends Controller
             'phone_number' => 'required|min:10|max:100',
         ]);
 
+        $request->merge(['user_id' => Auth::id()]);
         Client::create($request->all());
         Alert::success('Client Created Successfully', 'We have created the client successfully');
         return redirect()->route('client.index');
@@ -51,7 +50,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('client/client_show', compact('client'));
+        return view('client.client_show', compact('client'));
     }
 
     /**
@@ -59,7 +58,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('client/client_edit', compact('client'));
+        return view('client.client_edit', compact('client'));
     }
 
     /**
@@ -67,6 +66,12 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $response = Gate::inspect('update', $client);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('client.index');
+        }
+
         $validated = $request->validate([
             'name' => 'required|min:2|max:100',
             'first_lastname' => 'required|min:2|max:100',
@@ -92,6 +97,11 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        $response = Gate::inspect('delete', $client);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('client.index');
+        }
         $client->delete();
         Alert::warning('Client Deleted', 'The client has been deleted');
         return redirect()->route('client.index');

@@ -63,7 +63,7 @@
                         <dt class="col-sm-3"> Last Update </dt>
                         <dd class="col-sm-9"> {{ $product->updated_at }} </dd>
 
-                        <dt class="col-sm-3"> Taken By </dt>
+                        <dt class="col-sm-3"> Created By </dt>
                         <dd class="col-sm-9"> {{ $product->user->name }} </dd>
                     </dl>
                 </div>

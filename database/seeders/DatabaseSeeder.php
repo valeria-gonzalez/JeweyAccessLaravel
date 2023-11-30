@@ -21,6 +21,14 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => '2021-01-01 00:00:00',
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => ' Admin',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('admin'),
+            'email_verified_at' => '2021-01-01 00:00:00',
+            'is_admin' => true,
+        ]);
+
         $this->call([
             ClientSeeder::class,
             ProductSeeder::class,

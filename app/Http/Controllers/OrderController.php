@@ -12,7 +12,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())
+        $orders = Order::with('user')
+            ->where('user_id', Auth::id())
             ->orderBy('delivery_date', 'asc')
             ->orderBy('delivery_time', 'asc')
             ->get();

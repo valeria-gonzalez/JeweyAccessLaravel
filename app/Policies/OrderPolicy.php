@@ -37,7 +37,7 @@ class OrderPolicy
      */
     public function update(User $user, Order $order): Response
     {
-        return $user->id === $order->user_id
+        return $user->id === $order->user_id || $user->isAdmin
             ? Response::allow()
             : Response::deny('You do not own this order.');
     }
@@ -47,7 +47,7 @@ class OrderPolicy
      */
     public function delete(User $user, Order $order): Response
     {
-        return $user->id === $order->user_id
+        return $user->id === $order->user_id || $user->isAdmin
             ? Response::allow()
             : Response::deny('You do not own this order.');
     }

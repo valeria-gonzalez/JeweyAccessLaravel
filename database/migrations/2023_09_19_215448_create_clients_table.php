@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('second_lastname');
             $table->string('phone_number');
             $table->foreignId('user_id');
+            $table->string('updated_by')->nullable();
             $table->softDeletes();
         });
     }

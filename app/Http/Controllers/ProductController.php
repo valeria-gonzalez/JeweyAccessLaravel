@@ -34,6 +34,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $response = Gate::inspect('is-admin');
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('product.index');
+        }
+
         $req = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
@@ -43,7 +49,7 @@ class ProductController extends Controller
             'imge' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $request->merge(['user_id' => Auth::id()]);
+        $request->merge(['user_id' => Auth::id(), 'updated_by' => Auth::user()->name]);
 
         if ($request->hasFile('imge')) {
             $imagePath = $request->file('imge')->store('product_images', 'public');
@@ -97,6 +103,7 @@ class ProductController extends Controller
             'name' => strtoupper($request->name),
             'category' => strtoupper($request->category),
             'description' => strtoupper($request->description),
+            'updated_by' => Auth::user()->name,
         ]);
 
         if ($request->hasFile('imge')) {

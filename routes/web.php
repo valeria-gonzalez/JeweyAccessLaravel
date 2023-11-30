@@ -21,11 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::view('/multistep', 'multistep')->name('multistep'); //last here
-
 Route::middleware('auth')->group(function(){
     Route::resource('client', ClientController::class);
-    Route::get('order.allorders', [OrderController::class, 'allorders'])->name('order.allorders');
+    Route::get('order/allorders', [OrderController::class, 'allorders'])
+        ->name('order.allorders')
+        ->middleware('is_admin');
     Route::resource('order', OrderController::class);
     Route::resource('product', ProductController::class);
     Route::get('/dashboard', function () {
@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function(){
     })->name('dashboard');
 });
 
-// Route::get('prueba', function () {
-//     return view('prueba');
-// });
+Route::middleware('auth', 'is_admin')->group(function(){
+    Route::get('product/create', [ProductController::class, 'create'])
+        ->name('product.create');
+});
 
 Route::middleware([
     'auth:sanctum',

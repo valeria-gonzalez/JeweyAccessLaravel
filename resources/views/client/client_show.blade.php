@@ -41,8 +41,14 @@
                         <dt class="col-sm-3"> Created at </dt>
                         <dd class="col-sm-9"> {{ $client->created_at }} </dd>
 
+                        <dt class="col-sm-3"> Created by </dt>
+                        <dd class="col-sm-9"> {{ $client->user->name }} </dd>
+
                         <dt class="col-sm-3"> Updated at </dt>
                         <dd class="col-sm-9"> {{ $client->updated_at }} </dd>
+
+                        <dt class="col-sm-3"> Updated by </dt>
+                        <dd class="col-sm-9"> {{ $client->updated_by }} </dd>
                     </dl>
                 </div>
             </div>

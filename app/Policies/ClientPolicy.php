@@ -37,7 +37,7 @@ class ClientPolicy
      */
     public function update(User $user, Client $client): Response
     {
-        return $user->id === $client->user_id
+        return $user->id === $client->user_id || $user->isAdmin
             ? Response::allow()
             : Response::deny('You do not own this client.');
     }
@@ -47,7 +47,7 @@ class ClientPolicy
      */
     public function delete(User $user, Client $client): Response
     {
-        return $user->id === $client->user_id
+        return $user->isAdmin
             ? Response::allow()
             : Response::deny('You do not own this client.');
     }

@@ -39,7 +39,7 @@ class ClientController extends Controller
             'phone_number' => 'required|min:10|max:100',
         ]);
 
-        $request->merge(['user_id' => Auth::id()]);
+        $request->merge(['user_id' => Auth::id(), 'updated_by' => Auth::user()->name]);
         Client::create($request->all());
         Alert::success('Client Created Successfully', 'We have created the client successfully');
         return redirect()->route('client.index');
@@ -83,6 +83,7 @@ class ClientController extends Controller
             'name' => strtoupper($request->name),
             'first_lastname' => strtoupper($request->first_lastname),
             'second_lastname' => strtoupper($request->second_lastname),
+            'updated_by' => Auth::user()->name,
         ]);
 
         Client::where('id', $client->id)

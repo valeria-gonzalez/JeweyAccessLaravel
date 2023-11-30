@@ -45,7 +45,8 @@
                                     @for ($i = 0; $i < count($actions); $i++) 
                                         @php $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; @endphp 
                                         
-                                        @if ($action=='Delete' ) 
+                                        @if ($action=='Delete') 
+                                            @can('delete', $model)
                                             <form class="dropdown-item" action="{{route($actionRoute, $model)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -55,13 +56,19 @@
                                                         onclick="return confirm('Are you sure you want to delete this item?');"
                                                         style="background-color: transparent; border: none; color: #ff817b">
                                             </form>
-
-                                        @elseif($action == 'Edit' || $action == 'Show')
+                                            @endcan
+                                        @elseif($action == 'Edit')
+                                            @can('update', $model)
                                             <a class="dropdown-item" href="{{ route($actionRoute, $model->id) }}">
                                                 <i class="bx bx-edit-alt me-1"></i> 
                                                 {{ $action }}
                                             </a>
-
+                                            @endcan
+                                        @elseif($action == 'Show')
+                                            <a class="dropdown-item" href="{{ route($actionRoute, $model->id) }}">
+                                                <i class="bx bx-edit-alt me-1"></i> 
+                                                {{ $action }}
+                                            </a>
                                         @else
                                             <a class="dropdown-item" href="{{ $actionRoute }}">
                                                 <i class="bx bx-edit-alt me-1"></i> 

@@ -27,9 +27,11 @@ class ProductPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return true;
+        return $user->isAdmin
+            ? Response::allow()
+            : Response::deny('You are not an admin.');
     }
 
     /**
@@ -37,9 +39,9 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): Response
     {
-        return $user->id === $product->user_id
+        return $user->isAdmin
             ? Response::allow()
-            : Response::deny('You do not own this product.');
+            : Response::deny('You are not an admin.');
     }
 
     /**
@@ -47,9 +49,9 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): Response
     {
-        return $user->id === $product->user_id
+        return $user->isAdmin
             ? Response::allow()
-            : Response::deny('You do not own this product.');
+            : Response::deny('You are not an admin.');
     }
 
     /**

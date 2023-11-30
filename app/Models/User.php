@@ -73,4 +73,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Client::class);
     }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->attributes['is_admin'];
+    }
 }

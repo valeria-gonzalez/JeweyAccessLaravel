@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('description');
             $table->string('image')->nullable();
+            $table->string('updated_by')->nullable();
             $table->softDeletes();
         });
 

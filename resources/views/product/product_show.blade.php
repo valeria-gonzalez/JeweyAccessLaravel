@@ -60,17 +60,18 @@
                         <dt class="col-sm-3"> Created at </dt>
                         <dd class="col-sm-9"> {{ $product->created_at }} </dd>
 
+                        <dt class="col-sm-3"> Created By </dt>
+                        <dd class="col-sm-9"> {{ $product->user->name }} </dd>
+
                         <dt class="col-sm-3"> Last Update </dt>
                         <dd class="col-sm-9"> {{ $product->updated_at }} </dd>
 
-                        <dt class="col-sm-3"> Created By </dt>
-                        <dd class="col-sm-9"> {{ $product->user->name }} </dd>
+                        <dt class="col-sm-3"> Last Update By </dt>
+                        <dd class="col-sm-9"> {{ $product->updated_by }} </dd>
                     </dl>
                 </div>
             </div>
         </div>
-
-        <!-- carrousel -->
 
     </div>
 </x-mi-layout>

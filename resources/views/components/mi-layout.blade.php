@@ -99,7 +99,7 @@
                             <div data-i18n="Dashboards">Dashboard</div>
                         </a>
                     </li> -->
-                    
+
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Orders &amp; Sales</span>
                     </li>
@@ -110,11 +110,13 @@
                             <div data-i18n="Kanban">Orders</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('order.allorders') }}" target="" class="menu-link">
-                                    <div data-i18n="Analytics">All Orders</div>
-                                </a>
-                            </li>
+                            @if(auth()->user()->is_admin)
+                                <li class="menu-item">
+                                    <a href="{{ route('order.allorders') }}" target="" class="menu-link">
+                                        <div data-i18n="Analytics">All Orders</div>
+                                    </a>
+                                </li>
+                            @endif
                             <li class="menu-item">
                                 <a href="{{ route('order.index') }}" target="" class="menu-link">
                                     <div data-i18n="Analytics">My Orders</div>
@@ -152,11 +154,13 @@
                                     <div data-i18n="Analytics">All products</div>
                                 </a>
                             </li>
+                            @if(auth()->user()->is_admin)
                             <li class="menu-item">
                                 <a href="{{ route('product.create') }}" target="" class="menu-link">
                                     <div data-i18n="CRM">Create</div>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </li>
 
@@ -183,7 +187,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <!-- Misc -->
                     <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
                     <li class="menu-item">
@@ -236,9 +239,9 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                            <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
                                         @else
-                                            <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                                        <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle">
                                         @endif
                                     </div>
                                 </a>
@@ -249,17 +252,21 @@
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar">
                                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                                            <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="{{ Auth::user()->profile_photo_url }}" alt class="w-px-40 h-auto rounded-circle" />
                                                         @else
-                                                            <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle" /-->
+                                                        <img src="{{ asset('/sneat/assets/img/avatars/user.png') }}" alt class="w-px-40 h-auto rounded-circle" /-->
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-medium d-block">{{ auth()->user()->name }}</span>
                                                     <small class="text-muted">{{ auth()->user()->email }}</small>
-                                                    <br> 
+                                                    <br>
+                                                    @if(auth()->user()->is_admin)
+                                                    <span class="badge bg-success mt-1">Admin</span>
+                                                    @else
                                                     <span class="badge bg-primary mt-1">Member</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </a>
@@ -362,7 +369,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    
+
     <!--Livewire scripts-->
     @livewireScripts
 </body>

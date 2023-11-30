@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Client extends Model
 {
@@ -43,5 +44,10 @@ class Client extends Model
     public function setSecondLastnameAttribute($value)
     {
         $this->attributes['second_lastname'] = strtoupper($value);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->name . ' ' . $this->first_lastname . ' ' . $this->second_lastname;
     }
 }

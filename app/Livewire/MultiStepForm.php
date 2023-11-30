@@ -43,14 +43,7 @@ class MultiStepForm extends Component
         $this->method = $method;
         $this->currentStep = 1;
 
-        $this->clients = Client::all()->map(function ($client) {
-            return [
-                'id' => $client->id,
-                'name' => $client->name . ' '
-                    . $client->first_lastname . ' '
-                    . $client->second_lastname,
-            ];
-        });
+        $this->clients = Client::all();
 
         $this->allProducts = Product::all();
         $this->orderProducts = [];

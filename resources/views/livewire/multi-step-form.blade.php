@@ -35,7 +35,7 @@
         <!--STEP 1-->
         @if($currentStep == 1)
         <div class="step-one">
-            <x-liveforms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'name']" />
+            <x-liveforms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'full_name']" />
         </div>
         @endif
 

@@ -21,14 +21,12 @@
                 <div class="tab-pane fade show active" id="navs-pills-justified-client" role="tabpanel">
                     <small class="text-light fw-medium">Client Information</small>
                     <dl class="row mt-2">
-                        @php
-                        $client_name = $client->name . ' ' . $client->first_lastname . ' ' . $client->second_lastname;
-                        @endphp
+                        
                         <dt class="col-sm-3"> Client Id </dt>
                         <dd class="col-sm-9"> {{ $client->id }} </dd>
 
                         <dt class="col-sm-3"> Name </dt>
-                        <dd class="col-sm-9"> {{ $client_name }} </dd>
+                        <dd class="col-sm-9"> {{ $client->full_name }} </dd>
 
                         <dt class="col-sm-3"> Phone Number </dt>
                         <dd class="col-sm-9"> {{ $client->phone_number }} </dd>

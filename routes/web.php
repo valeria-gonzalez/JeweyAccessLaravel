@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
     Route::resource('client', ClientController::class);
-    Route::get('order/myorders', [OrderController::class, 'myorders'])->name('order.myorders');
+    Route::get('order/allorders', [OrderController::class, 'allorders'])->name('order.allorders');
     Route::resource('order', OrderController::class);
     Route::resource('product', ProductController::class);
     Route::get('/dashboard', function () {

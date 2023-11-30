@@ -109,11 +109,14 @@
                         <dt class="col-sm-3"> Created at </dt>
                         <dd class="col-sm-9"> {{ $order->created_at }} </dd>
 
+                        <dt class="col-sm-3"> Created By </dt>
+                        <dd class="col-sm-9"> {{ $order->user->name }} </dd>
+
                         <dt class="col-sm-3"> Last Update </dt>
                         <dd class="col-sm-9"> {{ $order->updated_at }} </dd>
 
-                        <dt class="col-sm-3"> Taken By </dt>
-                        <dd class="col-sm-9"> {{ $order->user->name }} </dd>
+                        <dt class="col-sm-3"> Last Update By </dt>
+                        <dd class="col-sm-9"> {{ $order->updated_by }} </dd>
 
                         <dt class="col-sm-3"> Status </dt>
                         @if ($order->status == 'PENDING')

@@ -9,6 +9,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Rules\MaxStock;
+use Illuminate\Support\Facades\Gate;
 
 class MultiStepForm extends Component
 {
@@ -21,6 +22,7 @@ class MultiStepForm extends Component
     public $orderProducts;
 
     public $client_id;
+    public $status;
     public $total;
     public $delivery_date;
     public $delivery_time;
@@ -56,6 +58,7 @@ class MultiStepForm extends Component
 
         if ($method === 'edit' && $order) {
             $this->client_id = $order->client_id;
+            $this->status = $order->status;
             $this->total = $order->total;
             $this->delivery_date = $order->delivery_date;
             $this->delivery_time = $order->delivery_time;
@@ -131,6 +134,7 @@ class MultiStepForm extends Component
                 'state' => 'required',
                 'country' => 'required',
                 'zipcode' => 'required',
+                'status' => 'required'
             ]);
         }
     }
@@ -173,6 +177,7 @@ class MultiStepForm extends Component
 
         $values = array(
             "client_id" => $this->client_id,
+            "status" => $this->status,
             "delivery_date" => $this->delivery_date,
             "delivery_time" => $this->delivery_time,
             "street" => $this->street,
@@ -184,6 +189,7 @@ class MultiStepForm extends Component
             "zipcode" => $this->zipcode,
             "references" => $this->references,
             "user_id" => Auth::id(),
+            "updated_by" => Auth::user()->name,
         );
 
 
@@ -247,6 +253,13 @@ class MultiStepForm extends Component
 
         $order = Order::find($this->order->id);
 
+        $response = Gate::inspect('update', $order);
+
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('order.index');
+        }
+
         // Keep track of product IDs that are still selected in the updated order
         // $updatedProductIds = collect($this->orderProducts)
         //     ->pluck('product_id')
@@ -264,6 +277,7 @@ class MultiStepForm extends Component
         // Update order data
         $order->update([
             'client_id' => $this->client_id,
+            'status' => $this->status,
             'delivery_date' => $this->delivery_date,
             'delivery_time' => $this->delivery_time,
             'street' => $this->street,
@@ -274,7 +288,7 @@ class MultiStepForm extends Component
             'country' => $this->country,
             'zipcode' => $this->zipcode,
             'references' => $this->references,
-            'user_id' => Auth::id(),
+            'updated_by' => Auth::user()->name,
         ]);
 
         // Sync products for the order

@@ -111,12 +111,12 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="{{ route('order.index') }}" target="" class="menu-link">
+                                <a href="{{ route('order.allorders') }}" target="" class="menu-link">
                                     <div data-i18n="Analytics">All Orders</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('order.myorders') }}" target="" class="menu-link">
+                                <a href="{{ route('order.index') }}" target="" class="menu-link">
                                     <div data-i18n="Analytics">My Orders</div>
                                 </a>
                             </li>
@@ -258,6 +258,13 @@
                                                 <div class="flex-grow-1">
                                                     <span class="fw-medium d-block">{{ auth()->user()->name }}</span>
                                                     <small class="text-muted">{{ auth()->user()->email }}</small>
+                                                    <br> 
+                                                    @if (auth()->user()->is_admin)
+                                                        <span class="badge bg-success mt-1">Admin</span>
+                                                    @else
+                                                        <span class="badge bg-primary mt-1">Member</span>
+                                                    @endif
+                                                    
                                                 </div>
                                             </div>
                                         </a>

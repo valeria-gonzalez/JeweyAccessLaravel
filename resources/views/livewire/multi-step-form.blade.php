@@ -10,6 +10,23 @@
 
     @endif
 
+    @php
+        $status = array(
+            1 => array(
+                'value' => 'PENDING',
+                'name' => 'Pending'
+            ),
+            2 => array(
+                'value' => 'CANCELLED',
+                'name' => 'Cancelled'
+            ),
+            3 => array(
+                'value' => 'DELIVERED',
+                'name' => 'Delivered'
+            )
+        );
+    @endphp
+
     <!-- Create Post Form -->
 
     <form wire:submit.prevent="{{ $method }}">
@@ -25,6 +42,7 @@
         <!--STEP2-->
         @if($currentStep == 2)
         <div class="step-two">
+            <x-liveforms.select-input label="Status" id="status" :options="$status" :properties="['value'=>'value', 'text'=>'name']" />
             <x-liveforms.form-input-req type="date" label="Delivery Date*" id="delivery_date" placeholder="2021-10-24"/>
             <x-liveforms.form-input-req type="time" label="Delivery Time*" id="delivery_time" placeholder="10:00"/>
             <x-liveforms.form-input-req type="text" label="Street*" id="street" placeholder="Ruben Romero"/>
@@ -94,19 +112,37 @@
         @endif
 
         <div class="action-buttons d-flex justify-content-end bg-white pt-2 pb-2">
-            @if($currentStep > 1 and $currentStep <= $totalSteps) <button type="button" class="btn btn-md btn-secondary m-1" wire:click="decreaseStep()">
-                Back
+            @if($currentStep == 1)
+                <a href="{{ route('order.index') }}" 
+                    class="btn btn-md btn-danger m-1"
+                >
+                    Cancel
+                </a>
+            @endif
+            
+            @if($currentStep > 1 and $currentStep <= $totalSteps) 
+                <button type="button" 
+                        class="btn btn-md btn-secondary m-1" 
+                        wire:click="decreaseStep()"
+                >
+                    Back
                 </button>
-                @endif
+            @endif
 
-                @if($currentStep >= 1 and $currentStep < $totalSteps) <button type="button" class="btn btn-md btn-success m-1" wire:click="increaseStep()">
+            @if($currentStep >= 1 and $currentStep < $totalSteps) 
+                <button type="button" 
+                        class="btn btn-md btn-success m-1" 
+                        wire:click="increaseStep()"
+                >
                     Next
-                    </button>
-                    @endif
+                </button>
+            @endif
 
-                    @if($currentStep == $totalSteps)
-                    <button type="submit" class="btn btn-md btn-primary m-1">{{ ucfirst($method) }}</button>
-                    @endif
+            @if($currentStep == $totalSteps)
+                <button type="submit" class="btn btn-md btn-primary m-1">
+                    {{ ucfirst($method) }}
+                </button>
+            @endif
         </div>
     </form>
 </div>

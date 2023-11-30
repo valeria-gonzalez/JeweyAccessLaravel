@@ -5,32 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except('index', 'show');
-    }
-
     public function index()
     {
-        $orders = Order::with('user')
-            ->orderBy('delivery_date', 'asc')
-            ->orderBy('delivery_time', 'asc')
-            ->get();
-
-        return view('order.order_index', compact('orders'));
-    }
-
-    public function myorders(){
         $orders = Order::where('user_id', Auth::id())
             ->orderBy('delivery_date', 'asc')
             ->orderBy('delivery_time', 'asc')
             ->get();
         
         return view('order.order_user_index', compact('orders'));
+        
+    }
+
+    public function allorders(){
+        $orders = Order::with('user')
+            ->orderBy('delivery_date', 'asc')
+            ->orderBy('delivery_time', 'asc')
+            ->get();
+
+        return view('order.order_index', compact('orders'));
     }
 
     /**
@@ -88,6 +85,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        $response = Gate::inspect('update', $order);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('order.index');
+        }
+
         $req = $request->validate([
             'total' => 'required|decimal:2',
             'delivery_date' => 'required|date',
@@ -122,6 +125,12 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $response = Gate::inspect('delete', $order);
+        if($response->denied()){
+            Alert::warning('Access Denied', $response->message());
+            return redirect()->route('order.index');
+        }
+
         $order->delete();
         Alert::warning('Order Deleted', 'The order has been deleted');
         return redirect()->route('order.index');

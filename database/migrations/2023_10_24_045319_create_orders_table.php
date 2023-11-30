@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('zipcode');
             $table->string('references');
+            $table->string('updated_by')->nullable();
             $table->string('status')-> default('PENDING');
             $table->softDeletes();
         });

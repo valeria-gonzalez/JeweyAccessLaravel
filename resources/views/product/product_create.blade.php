@@ -25,7 +25,14 @@
                 <x-forms.form-input type="text" label="Description" id="description" placeholder="Beautiful necklace." value="{{ old('description') }}" />
                 <x-forms.form-input type="file" label="Image" id="imge" placeholder="" value="" />
                 
-                <x-forms.form-submit> Create </x-forms.form-submit>
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <a href="{{ route('product.index') }}" class="btn btn-md btn-danger m-1">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
             </form>
             </x-horizontal-form>
     </div>

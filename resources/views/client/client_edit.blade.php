@@ -23,7 +23,15 @@
                 <x-forms.form-input-req type="text" label="Second Lastname" id="second_lastname" placeholder="Doe" value="{{ $client->second_lastname }}" />
                 <x-forms.form-input-req type="tel" label="Phone Number" id="phone_number" placeholder="+521234567890" value="{{ $client->phone_number }}" />
 
-                <x-forms.form-submit> Update </x-forms.form-submit>
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <a href="{{ route('client.index') }}" class="btn btn-md btn-danger m-1">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+
             </form>
             </x-horizontal-form>
     </div>

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Client;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Client;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientController extends Controller
@@ -14,7 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return view('client/client_index', compact('clients'));
+        return view('admin.client.client_index', compact('clients'));
     }
 
     /**
@@ -22,7 +23,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client/client_create');
+        return view('admin.client.client_create');
     }
 
     /**
@@ -39,7 +40,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
         Alert::success('Client Created Successfully', 'We have created the client successfully');
-        return redirect()->route('client.index');
+        return redirect()->route('admin.client.index');
     }
 
     /**
@@ -47,7 +48,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('client/client_show', compact('client'));
+        return view('admin.client.client_show', compact('client'));
     }
 
     /**
@@ -55,7 +56,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('client/client_edit', compact('client'));
+        return view('admin.client.client_edit', compact('client'));
     }
 
     /**
@@ -80,7 +81,7 @@ class ClientController extends Controller
             ->update($request->except('_token', '_method'));
 
         Alert::success('Client Updated Successfully', 'We have updated the client successfully');
-        return redirect()->route('client.index');
+        return redirect()->route('admin.client.index');
     }
 
     /**
@@ -90,6 +91,6 @@ class ClientController extends Controller
     {
         $client->delete();
         Alert::warning('Client Deleted', 'The client has been deleted');
-        return redirect()->route('client.index');
+        return redirect()->route('admin.client.index');
     }
 }

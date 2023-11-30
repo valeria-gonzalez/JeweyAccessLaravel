@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProductController extends Controller
 {
@@ -16,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::All();
-        return view('product.product_index', compact('products'));
+        return view('admin.product.product_index', compact('products'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.product_create');
+        return view('admin.product.product_create');
     }
 
     /**
@@ -52,7 +54,7 @@ class ProductController extends Controller
         Product::create($request->all());
 
         Alert::success('Product Created Successfully', 'We have created the product successfully');
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -60,7 +62,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.product_show', compact('product'));
+        return view('admin.product.product_show', compact('product'));
     }
 
     /**
@@ -68,7 +70,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product/product_edit', compact('product'));
+        return view('admin.product.product_edit', compact('product'));
     }
 
     /**
@@ -104,7 +106,7 @@ class ProductController extends Controller
             ->update($request->except('_token', '_method', 'imge'));
 
         Alert::success('Product Updated Successfully', 'We have updated the product successfully');
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -119,6 +121,6 @@ class ProductController extends Controller
         $product->delete();
         
         Alert::warning('Product Deleted', 'The product has been deleted');
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 }

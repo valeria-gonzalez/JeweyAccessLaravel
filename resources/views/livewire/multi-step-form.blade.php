@@ -35,24 +35,75 @@
         <!--STEP 1-->
         @if($currentStep == 1)
         <div class="step-one">
-            <x-liveforms.select-input label="Client*" id="client_id" :options="$clients" :properties="['value'=>'id', 'text'=>'full_name']" />
+            <x-liveforms.select-input label="Client*" 
+                                        id="client_id" 
+                                        :options="$clients" 
+                                        :properties="['value'=>'id', 
+                                                        'text'=>'full_name'
+                                                    ]" 
+            />
         </div>
         @endif
 
         <!--STEP2-->
         @if($currentStep == 2)
         <div class="step-two">
-            <x-liveforms.select-input label="Status" id="status" :options="$status" :properties="['value'=>'value', 'text'=>'name']" />
-            <x-liveforms.form-input-req type="date" label="Delivery Date*" id="delivery_date" placeholder="2021-10-24"/>
-            <x-liveforms.form-input-req type="time" label="Delivery Time*" id="delivery_time" placeholder="10:00"/>
-            <x-liveforms.form-input-req type="text" label="Street*" id="street" placeholder="Ruben Romero"/>
-            <x-liveforms.form-input-req type="text" label="Apt. Number*" id="apt_number" placeholder="713-3"/>
-            <x-liveforms.form-input-req type="text" label="Neighborhood*" id="neighborhood" placeholder="Tonala"/>
-            <x-liveforms.form-input-req type="text" label="City*" id="city" placeholder="Guadalajara"/>
-            <x-liveforms.form-input-req type="text" label="State*" id="state" placeholder="Jalisco"/>
-            <x-liveforms.form-input-req type="text" label="Country*" id="country" placeholder="Mexico"/>
-            <x-liveforms.form-input-req type="text" label="Zipcode*" id="zipcode" placeholder="45678"/>
-            <x-liveforms.form-input type="text" label="References" id="references" placeholder="Near the church"/>
+            <x-liveforms.select-input label="Status" 
+                                        id="status" 
+                                        :options="$status" 
+                                        :properties="['value'=>'value', 
+                                                        'text'=>'name']" 
+            />
+            <x-liveforms.form-input-req type="date" 
+                                        label="Delivery Date*" 
+                                        id="delivery_date" 
+                                        placeholder="2021-10-24"
+            />
+            <x-liveforms.form-input-req type="time" 
+                                        label="Delivery Time*" 
+                                        id="delivery_time" 
+                                        placeholder="10:00"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="Street*" 
+                                        id="street" 
+                                        placeholder="Ruben Romero"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="Apt. Number*" 
+                                        id="apt_number" 
+                                        placeholder="713-3"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="Neighborhood*" 
+                                        id="neighborhood" 
+                                        placeholder="Tonala"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="City*" 
+                                        id="city" 
+                                        placeholder="Guadalajara"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="State*" 
+                                        id="state" 
+                                        placeholder="Jalisco"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="Country*" 
+                                        id="country" 
+                                        placeholder="Mexico"
+            />
+            <x-liveforms.form-input-req type="text" 
+                                        label="Zipcode*" 
+                                        id="zipcode" 
+                                        placeholder="45678"
+            />
+            <x-liveforms.form-input type="text" 
+                                    label="References" 
+                                    id="references" 
+                                    placeholder="Near the church"
+            />
         </div>
         @endif
 
@@ -74,7 +125,8 @@
                             <td>
                                 <select name="orderProducts[{{$index}}][product_id]" 
                                         wire:model="orderProducts.{{$index}}.product_id" 
-                                        class="form-control">
+                                        class="form-control"
+                                >
                                     <option value="">-- choose product --</option>
                                     @if($allProducts->count() > 0)
                                         @foreach ($allProducts as $product)
@@ -95,7 +147,9 @@
                                         min="1" />
                             </td>
                             <td>
-                                <a href="#" wire:click.prevent="removeProduct({{$index}})">Delete</a>
+                                <a href="#" 
+                                    wire:click.prevent="removeProduct({{$index}})"
+                                > Delete </a>
                             </td>
                         </tr>
                         @endforeach
@@ -104,7 +158,9 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-sm btn-secondary" wire:click.prevent="addProduct">+ Add Another Product</button>
+                        <button class="btn btn-sm btn-secondary"
+                                 wire:click.prevent="addProduct"
+                        > + Add Another Product </button>
                     </div>
                 </div>
             </div>
@@ -115,27 +171,21 @@
             @if($currentStep == 1)
                 <a href="{{ route('order.index') }}" 
                     class="btn btn-md btn-danger m-1"
-                >
-                    Cancel
-                </a>
+                > Cancel </a>
             @endif
             
             @if($currentStep > 1 and $currentStep <= $totalSteps) 
                 <button type="button" 
                         class="btn btn-md btn-secondary m-1" 
                         wire:click="decreaseStep()"
-                >
-                    Back
-                </button>
+                > Back </button>
             @endif
 
             @if($currentStep >= 1 and $currentStep < $totalSteps) 
                 <button type="button" 
                         class="btn btn-md btn-success m-1" 
                         wire:click="increaseStep()"
-                >
-                    Next
-                </button>
+                > Next </button>
             @endif
 
             @if($currentStep == $totalSteps)

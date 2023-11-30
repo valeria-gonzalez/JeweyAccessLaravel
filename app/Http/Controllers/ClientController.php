@@ -39,9 +39,17 @@ class ClientController extends Controller
             'phone_number' => 'required|min:10|max:100',
         ]);
 
-        $request->merge(['user_id' => Auth::id(), 'updated_by' => Auth::user()->name]);
+        $request->merge([
+                        'user_id' => Auth::id(), 
+                        'updated_by' => Auth::user()->name
+                        ]);
+
         Client::create($request->all());
-        Alert::success('Client Created Successfully', 'We have created the client successfully');
+
+        Alert::success(
+                        'Client Created Successfully', '
+                        We have created the client successfully'
+                    );
         return redirect()->route('client.index');
     }
 
@@ -89,7 +97,10 @@ class ClientController extends Controller
         Client::where('id', $client->id)
             ->update($request->except('_token', '_method'));
 
-        Alert::success('Client Updated Successfully', 'We have updated the client successfully');
+        Alert::success(
+                        'Client Updated Successfully', 
+                        'We have updated the client successfully'
+                    );
         return redirect()->route('client.index');
     }
 
@@ -103,7 +114,9 @@ class ClientController extends Controller
             Alert::warning('Access Denied', $response->message());
             return redirect()->route('client.index');
         }
+
         $client->delete();
+        
         Alert::warning('Client Deleted', 'The client has been deleted');
         return redirect()->route('client.index');
     }

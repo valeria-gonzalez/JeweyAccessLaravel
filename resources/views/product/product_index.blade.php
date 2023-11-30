@@ -4,9 +4,19 @@
         <x-text.page-heading1 span="Product / " after-span="All Products" />
         <x-table.hoverable-table 
             title="All Products" 
-            :headings="['Id', 'Name', 'Category', 'Stock','Created By']" 
+            :headings="['Id', 
+                        'Name', 
+                        'Category', 
+                        'Stock',
+                        'Created By'
+                        ]" 
             :models="$products" 
-            :properties="['id', 'name', 'category', 'stock', 'user']" 
+            :properties="['id', 
+                            'name', 
+                            'category', 
+                            'stock', 
+                            'user'
+                        ]" 
             :actions="['Show', 'Edit','Delete']" 
             :action-routes="['product.show', 
                             'product.edit', 

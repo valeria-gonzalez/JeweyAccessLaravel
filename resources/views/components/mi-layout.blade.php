@@ -92,18 +92,10 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    <!-- Dashboards -->
-                    <!-- <li class="menu-item">
-                        <a href="#" target="" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Dashboards">Dashboard</div>
-                        </a>
-                    </li> -->
-
+                    <!-- Orders and Sales -->
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Orders &amp; Sales</span>
                     </li>
-                    <!-- Orders and Sales -->
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-grid"></i>
@@ -112,32 +104,34 @@
                         <ul class="menu-sub">
                             @if(auth()->user()->is_admin)
                                 <li class="menu-item">
-                                    <a href="{{ route('order.allorders') }}" target="" class="menu-link">
+                                    <a href="{{ route('order.allorders') }}" 
+                                        target="" 
+                                        class="menu-link"
+                                    >
                                         <div data-i18n="Analytics">All Orders</div>
                                     </a>
                                 </li>
                             @endif
+
                             <li class="menu-item">
-                                <a href="{{ route('order.index') }}" target="" class="menu-link">
+                                <a href="{{ route('order.index') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="Analytics">My Orders</div>
                                 </a>
                             </li>
+
                             <li class="menu-item">
-                                <a href="{{ route('order.create') }}" target="" class="menu-link">
+                                <a href="{{ route('order.create') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="CRM">Create</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <!--li class="menu-item">
-                    <a
-                        href="#"
-                        target=""
-                        class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-chat"></i>
-                        <div data-i18n="Chat">Sales</div>
-                    </a>
-                    </li--->
 
                     <!-- Products -->
                     <li class="menu-header small text-uppercase">
@@ -150,13 +144,19 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="{{ route('product.index') }}" target="" class="menu-link">
+                                <a href="{{ route('product.index') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="Analytics">All products</div>
                                 </a>
                             </li>
                             @if(auth()->user()->is_admin)
                             <li class="menu-item">
-                                <a href="{{ route('product.create') }}" target="" class="menu-link">
+                                <a href="{{ route('product.create') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="CRM">Create</div>
                                 </a>
                             </li>
@@ -176,37 +176,23 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="{{ route('client.index') }}" target="" class="menu-link">
+                                <a href="{{ route('client.index') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="Analytics"> All Clients </div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('client.create') }}" target="" class="menu-link">
+                                <a href="{{ route('client.create') }}" 
+                                    target="" 
+                                    class="menu-link"
+                                >
                                     <div data-i18n="CRM">Create</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <!-- Misc -->
-                    <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-                    <li class="menu-item">
-                    <a
-                        href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                        target=""
-                        class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-support"></i>
-                        <div data-i18n="Support">Support</div>
-                    </a>
-                    </li>
-                    <li class="menu-item">
-                    <a
-                        href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                        target=""
-                        class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-file"></i>
-                        <div data-i18n="Documentation">Documentation</div>
-                    </a>
-                    </li> -->
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -290,12 +276,19 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" 
+                                            href="{{ route('logout') }}" 
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        >
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" 
+                                                action="{{ route('logout') }}" 
+                                                method="POST" 
+                                                style="display: none;"
+                                        >
                                             @csrf
                                         </form>
                                     </li>
@@ -309,18 +302,8 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    <!-- Content -->
-
-
                     <!-- Layout Demo -->
                     {{ $slot }}
-                    <!-- <div class="layout-demo-wrapper">
-                
-                        </div> -->
-                    <!--/ Layout Demo -->
-
-                    <!-- / Content -->
-
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">

@@ -5,7 +5,9 @@
             <select name="{{ $id }}" id="{{ $id }}" class="form-select">
                 <option value="" selected> Select an option </option>
                 @foreach ($options as $option)
-                <option value="{{ $option[$properties['value']] }}">{{ $option[$properties['text']] }}</option>
+                <option value="{{ $option[$properties['value']] }}">
+                    {{ $option[$properties['text']] }}
+                </option>
                 @endforeach
             </select>
         </div>

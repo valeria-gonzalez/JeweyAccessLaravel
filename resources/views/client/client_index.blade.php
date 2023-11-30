@@ -7,7 +7,7 @@
         title="All Clients"
         :headings="['Id', 'Full Name', 'Created By']"
         :models="$clients"
-        :properties="['id', 'full_name',  'user']"
+        :properties="['id', 'full_name', 'user']"
         :actions="['Show', 'Edit','Delete']"
         :action-routes="['client.show', 
                           'client.edit', 

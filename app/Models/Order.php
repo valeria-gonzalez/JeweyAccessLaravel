@@ -14,10 +14,21 @@ class Order extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'total', 'delivery_date', 'delivery_time', 'street',
-        'apt_number', 'neighborhood', 'city', 'state',
-        'country', 'zipcode', 'references', 'client_id',
-        'user_id', 'status', 'updated_by',
+        'total', 
+        'delivery_date', 
+        'delivery_time', 
+        'street',
+        'apt_number', 
+        'neighborhood', 
+        'city', 
+        'state',
+        'country', 
+        'zipcode', 
+        'references', 
+        'client_id',
+        'user_id', 
+        'status', 
+        'updated_by',
     ];
 
     public function client()

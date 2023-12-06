@@ -51,6 +51,5 @@ class AuthServiceProvider extends ServiceProvider
                         : Response::deny('You are not an admin.');
         });
 
-
     }
 }

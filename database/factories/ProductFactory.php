@@ -32,14 +32,13 @@ class ProductFactory extends Factory
                     360,
                     'jewelry',
                     false, // Set to false to get the relative path
-                    true,
+                    true, // Use image's original extension
                     'jpg'
                 );
         
                 // Get the relative path to the saved image
                 $relativePath = 'product_images/' . basename($image);
         
-                // Return the relative path to be stored in the 'image' field
                 return $relativePath;
             },
         ];

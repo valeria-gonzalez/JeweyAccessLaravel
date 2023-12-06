@@ -16,6 +16,9 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::with('user')->get();
+        $title = 'Delete Client';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('client.client_index', compact('clients'));
     }
 

@@ -108,7 +108,6 @@ class ProductController extends Controller
 
         if ($request->hasFile('imge')) {
             Storage::disk('public')->delete($product->image);
-            //Storage::delete($product->image);
 
             $path = $request->file('imge')->store('product_images', 'public');
             

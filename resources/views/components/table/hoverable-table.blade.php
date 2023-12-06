@@ -53,15 +53,15 @@
                                     </button>
                                     
                                     <div class="dropdown-menu">
-                                        @for ($i = 0; $i < count($actions); $i++) 
+                                        @foreach ($actions as $index=>$action)
                                             @php 
-                                                $action=$actions[$i]; $actionRoute=$actionRoutes[$i]; 
+                                                $actionRoute = $actionRoutes[$index]; 
                                             @endphp 
 
                                             @if ($action=='Delete') 
                                                 @can('delete', $model)
                                                 <form class="dropdown-item" 
-                                                        action="{{route($actionRoute, $model)}}" 
+                                                        action="{{ route($actionRoute, $model) }}" 
                                                         method="POST"
                                                 >
                                                     @csrf
@@ -98,7 +98,7 @@
                                                     {{ $action }}
                                                 </a>
                                             @endif
-                                        @endfor
+                                        @endforeach
                                     </div>
                                 </div>
                             </td>

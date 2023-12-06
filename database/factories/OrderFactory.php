@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Client;
-use App\Models\Product;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
@@ -19,10 +19,11 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         $clientIds = Client::pluck('id')->toArray();
-        $productIds = Product::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
 
         return [
             'client_id' => $this->faker->randomElement($clientIds),
+            'status' => $this->faker->randomElement(['PENDING', 'DELIVERED', 'CANCELLED']),
             'total' => $this->faker->randomFloat(2, 0, 500),
             'delivery_date' => $this->faker->date(),
             'delivery_time' => $this->faker->time(),
@@ -34,8 +35,7 @@ class OrderFactory extends Factory
             'country' => $this->faker->country(),
             'zipcode' => $this->faker->postcode(),
             'references' => $this->faker->sentence(10),
-
-            
+            'user_id' => $this->faker->randomElement($userIds),
         ];
     }
 }

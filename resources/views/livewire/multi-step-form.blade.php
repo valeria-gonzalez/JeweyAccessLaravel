@@ -38,8 +38,9 @@
             <x-liveforms.select-input label="Client*" 
                                         id="client_id" 
                                         :options="$clients" 
-                                        :properties="['value'=>'id', 
-                                                        'text'=>'full_name'
+                                        :properties="[
+                                                    'value'=>'id', 
+                                                    'text'=>'full_name'
                                                     ]" 
             />
         </div>
@@ -51,8 +52,10 @@
             <x-liveforms.select-input label="Status" 
                                         id="status" 
                                         :options="$status" 
-                                        :properties="['value'=>'value', 
-                                                        'text'=>'name']" 
+                                        :properties="[
+                                                    'value'=>'value', 
+                                                    'text'=>'name'
+                                                    ]" 
             />
             <x-liveforms.form-input-req type="date" 
                                         label="Delivery Date*" 
@@ -123,8 +126,8 @@
                         @foreach ($orderProducts as $index => $orderProduct)
                         <tr>
                             <td>
-                                <select name="orderProducts[{{$index}}][product_id]" 
-                                        wire:model="orderProducts.{{$index}}.product_id" 
+                                <select name="orderProducts[{{ $index }}][product_id]" 
+                                        wire:model="orderProducts.{{ $index }}.product_id" 
                                         class="form-control"
                                 >
                                     <option value="">-- choose product --</option>
@@ -141,14 +144,14 @@
                             </td>
                             <td>
                                 <input type="number" 
-                                        name="orderProducts[{{$index}}][quantity]" 
+                                        name="orderProducts[{{ $index }}][quantity]" 
                                         class="form-control" 
-                                        wire:model="orderProducts.{{$index}}.quantity" 
+                                        wire:model="orderProducts.{{ $index }}.quantity" 
                                         min="1" />
                             </td>
                             <td>
                                 <a href="#" 
-                                    wire:click.prevent="removeProduct({{$index}})"
+                                    wire:click.prevent="removeProduct({{ $index }})"
                                 > Delete </a>
                             </td>
                         </tr>

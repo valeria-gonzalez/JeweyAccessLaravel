@@ -10,8 +10,6 @@ class Order extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $primaryKey = 'id';
 
     protected $fillable = [
         'total', 

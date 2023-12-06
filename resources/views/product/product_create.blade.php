@@ -41,8 +41,7 @@
                                             id="category" 
                                             :options="$categories" 
                                             :properties="['value'=>'value', 
-                                                            'text'=>'name'
-                                                        ]" 
+                                                        'text'=>'name']" 
                 />
                 <x-forms.form-input-req type="text" 
                                         label="Name*" 

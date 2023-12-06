@@ -193,12 +193,10 @@ class MultiStepForm extends Component
 
             $this->total += $product->price * $orderProduct['quantity'];
 
-            //$product->stock -= $orderProduct['quantity'];
-            //$product->save();
-
-            $order->products()->attach($orderProduct['product_id'], [
-                'quantity' => $orderProduct['quantity'],
-            ]);
+            $order->products()->attach(
+                $orderProduct['product_id'], 
+                ['quantity' => $orderProduct['quantity']]
+            );
         }
 
         $order->total = $this->total;
@@ -253,20 +251,6 @@ class MultiStepForm extends Component
             return redirect()->route('order.index');
         }
 
-        // Keep track of product IDs that are still selected in the updated order
-        // $updatedProductIds = collect($this->orderProducts)
-        //     ->pluck('product_id')
-        //     ->filter()
-        //     ->all();
-
-        // // Detach products that are no longer selected in the updated order
-        // $detachedProductIds = $order->products()
-        //     ->whereNotIn('product_id', $updatedProductIds)
-        //     ->pluck('product_id')
-        //     ->all();
-
-        // $order->products()->detach($detachedProductIds);
-
         // Update order data
         $order->update([
             'client_id' => $this->client_id,
@@ -286,41 +270,22 @@ class MultiStepForm extends Component
 
         // Sync products for the order
         $order->products()->detach(); // Detach existing relationships
+        $this->total = 0;
+        
         foreach ($this->orderProducts as $orderProduct) {
             $product = Product::find($orderProduct['product_id']);
 
             $this->total += $product->price * $orderProduct['quantity'];
 
-            $order->products()->attach($orderProduct['product_id'], [
-                'quantity' => $orderProduct['quantity'],
-            ]);
-
-            // Update stock for each product
-            //$product->stock -= $orderProduct['quantity'];
-            //$product->save();
+            $order->products()->attach(
+                $orderProduct['product_id'], 
+                ['quantity' => $orderProduct['quantity']]
+            );
         }
-
-        // foreach ($this->orderProducts as $orderProduct) {
-        //     $product = Product::find($orderProduct['product_id']);
-        //     $order->products()->syncWithoutDetaching([$orderProduct['product_id'] 
-        //                                                 => ['quantity' => $orderProduct['quantity']]]);
-            
-        //     $this->total += $product->price * $orderProduct['quantity'];                                            
-    
-        //     // Update stock for each product
-        //     $product->stock -= $orderProduct['quantity'];
-        //     $product->save();
-        // }
 
         $order->update([
             'total' => $this->total,
         ]);
-
-        // foreach ($detachedProductIds as $detachedProductId) {
-        //     $detachedProduct = Product::find($detachedProductId);
-        //     $detachedProduct->stock += $order->products()->find($detachedProductId)->pivot->quantity;
-        //     $detachedProduct->save();
-        // }
 
         Alert::success('Order Updated Successfully', 'We have updated your order successfully');
         return redirect()->route('order.index');
